@@ -11,13 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInputSmoothVelocity;
     private Vector2 MousePos;
     [SerializeField] float speed = 5;
-    [SerializeField] Camera camera;
+    [SerializeField] Camera cam;
     [SerializeField] Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        camera = Camera.main;
+        cam = Camera.main;
         animator = GetComponent<Animator>();
     }
 
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
             movementInput, 
             ref movementInputSmoothVelocity, 
             0.1f);
-        rb.velocity = smoothedMovementInput * speed;
+        rb.linearVelocity = smoothedMovementInput * speed;
         Vector2 lookDir = MousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = angle;
@@ -46,6 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMousePos(InputValue inputValue)
     {
-        MousePos = camera.ScreenToWorldPoint(inputValue.Get<Vector2>());
+        MousePos = cam.ScreenToWorldPoint(inputValue.Get<Vector2>());
     }
 }
