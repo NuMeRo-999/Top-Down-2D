@@ -31,33 +31,8 @@ public class EnemyMovement : MonoBehaviour
         // Dirección hacia el jugador
         Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
 
-        if (isOrbitingPlayer)
-        {
-            // Temporizador para cambiar la dirección del orbitado
-            changeDirectionTimer -= Time.fixedDeltaTime;
-            if (changeDirectionTimer <= 0f)
-            {
-                // Cambiar la dirección del orbitado aleatoriamente
-                orbitOffset = new Vector2(
-                    Random.Range(-1f, 1f),
-                    Random.Range(-1f, 1f)).normalized * orbitMagnitude;
-                changeDirectionTimer = changeDirectionInterval;
-            }
-
-            // Movimiento de órbita alrededor del jugador
-            timeCounter += Time.fixedDeltaTime * orbitFrequency;
-            Vector2 orbitMovement = new Vector2(
-                Mathf.Sin(timeCounter) * orbitOffset.x,
-                Mathf.Cos(timeCounter) * orbitOffset.y);
-
-            // Dirección combinada (hacia el jugador + movimiento de órbita)
-            movementDirection = (directionToPlayer + orbitMovement).normalized;
-        }
-        else
-        {
-            // Movimiento directo hacia el jugador
-            movementDirection = directionToPlayer;
-        }
+        // Movimiento directo hacia el jugador
+        Vector2 movementDirection = directionToPlayer;
 
         // Aplicar la velocidad usando linearVelocity
         rb.linearVelocity = movementDirection * speed;
