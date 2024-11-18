@@ -10,7 +10,9 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float orbitFrequency = 2f;
     [SerializeField] float orbitMagnitude = 1.5f;
     [SerializeField] float changeDirectionInterval = 1.5f;
+    
 
+    private Animator animator;
     private Vector2 movementDirection;
     private bool isOrbitingPlayer = false;
     private float timeCounter;
@@ -20,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         changeDirectionTimer = changeDirectionInterval;
     }
@@ -82,6 +85,16 @@ public class EnemyMovement : MonoBehaviour
         {
             // Desactivar el movimiento de órbita
             isOrbitingPlayer = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
         }
     }
 }
