@@ -1,7 +1,11 @@
 {
     "files.exclude": {
-        "**/.DS_Store": true,
         "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
         "**/.vs": true,
         "**/.gitmodules": true,
         "**/.vsconfig": true,
@@ -54,7 +58,20 @@
         "ProjectSettings/": true,
         "UserSettings/": true,
         "temp/": true,
-        "Temp/": true
+        "Temp/": true,
+        "[!A]*/**": true,
+        "A[!s]*/**": true,
+        "As[!s]*/**": true,
+        "Ass[!e]*/**": true,
+        "Asse[!t]*/**": true,
+        "Asset[!s]*/**": true,
+        "Assets/[!S]*/**": true,
+        "Assets/S[!c]*/**": true,
+        "Assets/Sc[!r]*/**": true,
+        "Assets/Scr[!i]*/**": true,
+        "Assets/Scri[!p]*/**": true,
+        "Assets/Scrip[!t]*/**": true,
+        "Assets/Script[!s]*/**": true
     },
     "dotnet.defaultSolution": "Top-Down-2D.sln"
 }

@@ -2,19 +2,45 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Animator animator;
+  private Animator animator;
+  public Transform attackPoint;
+  public float attackRange = 0.5f;
+  public LayerMask enemyLayers;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+  void Start()
+  {
+    animator = GetComponent<Animator>();
+  }
 
-    void Update()
+  void Update()
+  {
+    if (Input.GetMouseButtonDown(0))
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Entra");
-            animator.SetTrigger("Attack");
-        }
+      Attack();
     }
+  }
+
+  void Attack()
+  {
+    animator.SetTrigger("Attack");
+
+    Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+    foreach (Collider2D enemy in hitEnemies)
+    {
+      if (enemy.gameObject.CompareTag("Enemy"))
+      {
+        enemy.GetComponent<Enemy>().TakeDamage(10);
+      }
+    }
+  }
+
+  private void OnDrawGizmos() {
+
+    if (attackPoint == null)
+    {
+      return;
+    }
+    Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+  }
 }
