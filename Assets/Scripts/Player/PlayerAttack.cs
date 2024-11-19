@@ -4,7 +4,7 @@ public class PlayerAttack : MonoBehaviour
 {
   private Animator animator;
   public Transform attackPoint;
-  public float attackRange = 0.5f;
+  public float attackRange = 0.3f;
   public LayerMask enemyLayers;
 
   void Start()

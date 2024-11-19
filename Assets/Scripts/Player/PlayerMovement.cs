@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
   private Vector2 smoothedMovementInput;
   private Vector2 movementInputSmoothVelocity;
   private Vector2 MousePos;
+  private Camera cam;
+  private Animator animator;
   [SerializeField] float speed = 5;
-  [SerializeField] Camera cam;
-  [SerializeField] Animator animator;
 
   void Start()
   {
