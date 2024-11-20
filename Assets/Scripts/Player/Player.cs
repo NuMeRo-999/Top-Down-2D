@@ -6,31 +6,36 @@ public class Player : MonoBehaviour
   [SerializeField] int maxHealth = 100;
 
   private Animator animator;
+  private BloodParticles bloodParticles;
 
   void Start()
   {
     currentHealth = maxHealth;
 
     animator = GetComponent<Animator>();
+    bloodParticles = GetComponent<BloodParticles>();
   }
 
   void Update()
   {
-    if(currentHealth <= 0) Die();
+    
   }
 
-  public void TakeDamage(int damage) {
+  public void TakeDamage(int damage)
+  {
 
-    // no hay animación salen particulas de sangre junto al sonido de pegar de los enemigos
+    bloodParticles.SpawnBloodParticlesAndStain();
 
     currentHealth -= damage;
 
-    if(currentHealth <= 0) Die();
+    if (currentHealth <= 0) Die();
   }
 
   public void Die()
   {
     animator.SetBool("isDead", true);
+    Debug.Log("Player died");
+    bloodParticles.SpawnBloodBurst();
     GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     GetComponent<SpriteRenderer>().sortingOrder = -1;
     GetComponent<PlayerMovement>().enabled = false;

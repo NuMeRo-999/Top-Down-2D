@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackCooldown = 1f; // Tiempo entre ataques
     [SerializeField] LayerMask attackLayer; // Capa que incluye al jugador y objetos relevantes
 
+    private BloodParticles bloodParticles;
     private Animator animator;
     private float lastAttackTime;
 
@@ -16,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        bloodParticles = GetComponent<BloodParticles>();
     }
 
     void Update()
@@ -52,6 +54,9 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
+        // Generar las partículas de sangre en la posición del enemigo
+        bloodParticles.SpawnBloodParticlesAndStain();
+
         animator.SetTrigger("Hit");
 
         if (currentHealth <= 0) Die();
@@ -61,11 +66,13 @@ public class Enemy : MonoBehaviour
     {
         animator.SetBool("isDead", true);
         enabled = false;
+
+        bloodParticles.SpawnBloodBurst();
+
         GetComponent<EnemyMovement>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
-
     private void OnDrawGizmos()
     {
         // Dibujar el gizmo del raycast
