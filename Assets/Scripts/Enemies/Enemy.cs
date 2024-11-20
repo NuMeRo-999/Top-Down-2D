@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
     public int currentHealth;
     [SerializeField] int maxHealth = 20;
-    [SerializeField] float attackDamage = 10;
-    [SerializeField] float attackRange = 0.5f;
-    [SerializeField] Transform attackPoint;
+    [SerializeField] int attackDamage = 10;
+    [SerializeField] float attackRange = 2f; // Longitud del rayo
+    [SerializeField] float attackCooldown = 1f; // Tiempo entre ataques
+    [SerializeField] LayerMask attackLayer; // Capa que incluye al jugador y objetos relevantes
 
     private Animator animator;
+    private float lastAttackTime;
 
     void Start()
     {
@@ -19,15 +20,32 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
+        // Intentar atacar si se cumple el cooldown
+        if (Time.time >= lastAttackTime + attackCooldown)
+        {
+            Attack();
+            lastAttackTime = Time.time;
+        }
     }
 
     void Attack()
     {
-        animator.SetTrigger("Attack");
+        // Crear el raycast y excluir el collider del enemigo usando el LayerMask
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, attackRange, attackLayer);
 
-        Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        Debug.DrawLine(transform.position, transform.position + transform.right * attackRange, Color.red);
 
+        foreach (RaycastHit2D hit in hits)
+        {
+            // Verificar si el rayo golpea al jugador y que el collider no sea un trigger
+            if (hit.collider != null && hit.collider.CompareTag("Player") && !hit.collider.isTrigger)
+            {
+                animator.SetTrigger("Attack");
+                Debug.Log("Golpeado con raycast");
+                hit.collider.GetComponent<Player>().TakeDamage(attackDamage);
+                return; // Salir del bucle tras golpear al jugador
+            }
+        }
     }
 
     public void TakeDamage(int damage)
@@ -42,7 +60,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         animator.SetBool("isDead", true);
-        this.enabled = false;
+        enabled = false;
         GetComponent<EnemyMovement>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
@@ -50,11 +68,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-
-        if (attackPoint == null)
-        {
-            return;
-        }
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        // Dibujar el gizmo del raycast
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * attackRange);
     }
 }

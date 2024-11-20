@@ -88,14 +88,14 @@ public class EnemyMovement : MonoBehaviour
     }
   }
 
-  private void OnCollisionEnter2D(Collision2D other)
-  {
-    if (other.gameObject.CompareTag("Player"))
-    {
-      if (animator != null)
-      {
-        animator.SetTrigger("Attack");
-      }
-    }
-  }
+  // private void OnCollisionEnter2D(Collision2D other)
+  // {
+  //   if (other.gameObject.CompareTag("Player"))
+  //   {
+  //     if (animator != null)
+  //     {
+  //       animator.SetTrigger("Attack");
+  //     }
+  //   }
+  // }
 }
