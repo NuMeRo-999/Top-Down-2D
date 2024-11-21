@@ -43,9 +43,8 @@ public class Enemy : MonoBehaviour
             if (hit.collider != null && hit.collider.CompareTag("Player") && !hit.collider.isTrigger)
             {
                 animator.SetTrigger("Attack");
-                Debug.Log("Golpeado con raycast");
                 hit.collider.GetComponent<Player>().TakeDamage(attackDamage);
-                return; // Salir del bucle tras golpear al jugador
+                return;
             }
         }
     }
