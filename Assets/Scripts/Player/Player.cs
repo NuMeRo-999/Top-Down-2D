@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
   public int currentHealth;
   [SerializeField] int maxHealth = 100;
+  [SerializeField] TextMeshProUGUI healthText;
 
   private Animator animator;
   private BloodParticles bloodParticles;
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
 
     animator = GetComponent<Animator>();
     bloodParticles = GetComponent<BloodParticles>();
+    healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
   }
 
   void Update()
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     bloodParticles.SpawnBloodParticlesAndStain();
 
     currentHealth -= damage;
+    healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
 
     if (currentHealth <= 0) Die();
   }
