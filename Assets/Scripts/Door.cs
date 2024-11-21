@@ -5,11 +5,12 @@ public class Door : MonoBehaviour
 
     public bool open;
     private Animator animator;
-    public Collider2D collider;
+    private Collider2D doorCollider;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        doorCollider = GetComponent<Collider2D>();
     }
 
     void Update()
@@ -35,15 +36,15 @@ public class Door : MonoBehaviour
     public void openDoor()
     {
         open = true;
-        animator.SetBool("Open", true);
-        collider.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        doorCollider.enabled = false;
     }
 
     public void closeDoor()
     {
         open = false;
-        animator.SetBool("Open", false);
-        collider.enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        doorCollider.enabled = true;
     }
 
 }
