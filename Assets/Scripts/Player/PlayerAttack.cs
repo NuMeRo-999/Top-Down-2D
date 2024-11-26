@@ -28,9 +28,9 @@ public class PlayerAttack : MonoBehaviour
 
     foreach (Collider2D enemy in hitEnemies)
     {
-      if (enemy.gameObject.CompareTag("Enemy"))
+      if (!enemy.isTrigger && enemy.gameObject.CompareTag("Enemy") && enemy.GetComponent<Enemy>().currentHealth > 0)
       {
-        enemy.GetComponent<Enemy>().TakeDamage(10);
+      enemy.GetComponent<Enemy>().TakeDamage(10);
       }
     }
   }
