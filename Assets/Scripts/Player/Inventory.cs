@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<InventoryItem> items = new List<InventoryItem>(20); // Lista con 20 espacios
-    public int selectedIndex = 0; // Índice del objeto seleccionado
-    public WeaponSystem weaponSystem; // Referencia al sistema de armas
+    public List<InventoryItem> items = new List<InventoryItem>(20);
+    public int selectedIndex = 0;
+    public WeaponSystem weaponSystem;
+    private Player player;
 
     void Awake()
     {
@@ -20,9 +21,28 @@ public class Inventory : MonoBehaviour
         UpdateEquippedItem();
     }
 
+    private void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
     void Update()
     {
         HandleSelectionInput();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            InventoryItem selectedItem = items[selectedIndex];
+
+            if (selectedItem != null)
+            {
+                if (selectedItem.isHealingItem)
+                {
+                    player.Heal(selectedItem.healingAmount);
+                    items[selectedIndex] = null;
+                }
+            }
+        }
     }
 
     void HandleSelectionInput()
@@ -56,11 +76,6 @@ public class Inventory : MonoBehaviour
             if (selectedItem.isWeapon)
             {
                 weaponSystem.EquipWeapon(selectedItem.weaponStats);
-            }
-            else if (selectedItem.isHealingItem)
-            {
-                Debug.Log($"Objeto curativo seleccionado: {selectedItem.itemName}");
-                // Podrías agregar más lógica para el uso del objeto curativo
             }
         }
         else

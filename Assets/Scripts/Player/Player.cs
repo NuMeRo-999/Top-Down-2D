@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
   void Update()
   {
-    
+
   }
 
   public void TakeDamage(int damage)
@@ -33,6 +33,17 @@ public class Player : MonoBehaviour
     healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
 
     if (currentHealth <= 0) Die();
+  }
+
+  public void Heal(int healAmount)
+  {
+
+    if (Input.GetMouseButtonDown(0))
+    {
+      currentHealth += healAmount;
+      if (currentHealth > maxHealth) currentHealth = maxHealth;
+      healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
+    }
   }
 
   public void Die()

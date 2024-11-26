@@ -7,7 +7,6 @@ public class PlayerAim : MonoBehaviour
     public bool isAiming = false;
     
     private WeaponSystem weaponSystem;
-    private SpriteRenderer spriteRenderer;
     private PlayerMovement playerMovement;
     private Animator animator;
     
@@ -15,7 +14,6 @@ public class PlayerAim : MonoBehaviour
     void Start()
     {
         weaponSystem = GetComponent<WeaponSystem>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
     }
