@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
   private Vector2 MousePos;
   private Camera cam;
   private Animator animator;
-  [SerializeField] float speed = 5;
+  public float speed = 5;
 
   void Start()
   {
