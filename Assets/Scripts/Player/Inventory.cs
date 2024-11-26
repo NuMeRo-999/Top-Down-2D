@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public int selectedIndex = 0; // Índice del objeto seleccionado
     public WeaponSystem weaponSystem; // Referencia al sistema de armas
 
-    void Start()
+    void Awake()
     {
         if (items.Count < 20)
         {
@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
             for (int i = items.Count; i < 20; i++)
                 items.Add(null);
         }
+        Debug.Log(items.Count);
 
         UpdateEquippedItem();
     }
@@ -26,14 +27,22 @@ public class Inventory : MonoBehaviour
 
     void HandleSelectionInput()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) // Cambiar al objeto anterior
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scroll > 0f)
         {
-            selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : items.Count - 1;
+            do
+            {
+                selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : items.Count - 1;
+            } while (items[selectedIndex] == null);
             UpdateEquippedItem();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow)) // Cambiar al siguiente objeto
+        else if (scroll < 0f)
         {
-            selectedIndex = (selectedIndex < items.Count - 1) ? selectedIndex + 1 : 0;
+            do
+            {
+                selectedIndex = (selectedIndex < items.Count - 1) ? selectedIndex + 1 : 0;
+            } while (items[selectedIndex] == null);
             UpdateEquippedItem();
         }
     }

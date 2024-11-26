@@ -11,7 +11,7 @@ public class WeaponSystem : MonoBehaviour
     public void EquipWeapon(Weapon newWeapon)
     {
         equippedWeapon = newWeapon;
-        Debug.Log($"Arma equipada: {equippedWeapon.weaponName}");
+        // Debug.Log($"Arma equipada: {equippedWeapon.weaponName}");
     }
 
     public void UnequipWeapon()
