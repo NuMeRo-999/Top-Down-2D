@@ -28,7 +28,7 @@ public class PlayerAim : MonoBehaviour
 
     void Aim()
     {
-        if (Input.GetMouseButton(1)) // Clic derecho sostenido
+        if (Input.GetMouseButton(1))
         {
             isAiming = true;
 
@@ -36,7 +36,8 @@ public class PlayerAim : MonoBehaviour
             mousePosition.z = 0; 
 
             Vector3 direction = (mousePosition - transform.position).normalized;
-
+            // Debug.Log(Vector3.Distance(transform.position + weaponHolder.position, mousePosition));
+            // Debug.Log(Vector3.Distance(transform.position + weaponHolder.position, mousePosition) > 0.1f);
             if (Vector3.Distance(transform.position + weaponHolder.position, mousePosition) > 0.1f) 
             {
                 weaponHolder.right = direction;

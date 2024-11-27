@@ -8,7 +8,15 @@ public class WeaponSystem : MonoBehaviour
     public Transform firePoint;
     public PlayerAim playerAim;
     public TextMeshProUGUI ammoText;
+    private Inventory inventory;
 
+    public GameObject bulletPrefab;
+
+
+    void Start()
+    {
+        inventory = GetComponent<Inventory>();
+    }
 
     public void EquipWeapon(Weapon newWeapon)
     {
@@ -27,7 +35,7 @@ public class WeaponSystem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (equippedWeapon != null && playerAim.isAiming)
+            if (equippedWeapon != null && playerAim.isAiming && inventory.selectedItem.isWeapon)
             {
                 Fire();
             }
@@ -100,7 +108,9 @@ public class WeaponSystem : MonoBehaviour
     void FireBullet(float range)
     {
         Debug.Log($"Disparando bala con alcance {range}.");
-        // Instanciar bala y aplicar lógica
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 90));
+        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * 20, ForceMode2D.Impulse);
+        Destroy(bullet, range);
     }
 
     void FireShotgun()
