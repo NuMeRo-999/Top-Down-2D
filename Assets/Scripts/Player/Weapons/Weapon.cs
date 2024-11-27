@@ -8,11 +8,11 @@ public class Weapon
     public int damage;
     public float fireRate;
     public float range;
-    public int maxAmmo; // Munición máxima que puede cargar
-    public int currentAmmo; // Munición cargada actualmente
-    public int totalAmmo; // Munición total disponible para recargar
-    public float reloadTime; // Tiempo de recarga
-    public WeaponType type; // Tipo de arma (pistola, escopeta, etc.)
+    public int maxAmmo;
+    public int currentAmmo;
+    public int totalAmmo;
+    public float reloadTime;
+    public WeaponType type;
 }
 
 public enum WeaponType

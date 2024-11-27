@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
@@ -6,18 +7,20 @@ public class WeaponSystem : MonoBehaviour
     public Weapon equippedWeapon;
     public Transform firePoint;
     public PlayerAim playerAim;
+    public TextMeshProUGUI ammoText;
 
 
     public void EquipWeapon(Weapon newWeapon)
     {
         equippedWeapon = newWeapon;
-        // Debug.Log($"Arma equipada: {equippedWeapon.weaponName}");
+        ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
+        ammoText.enabled = true;
     }
 
     public void UnequipWeapon()
     {
         equippedWeapon = null;
-        Debug.Log("Arma desequipada.");
+        ammoText.enabled = false;
     }
 
     void Update()

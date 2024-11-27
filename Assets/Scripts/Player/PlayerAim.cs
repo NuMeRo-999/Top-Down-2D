@@ -8,6 +8,7 @@ public class PlayerAim : MonoBehaviour
     
     private WeaponSystem weaponSystem;
     private PlayerMovement playerMovement;
+    private Inventory inventory;
     private Animator animator;
     
 
@@ -15,6 +16,7 @@ public class PlayerAim : MonoBehaviour
     {
         weaponSystem = GetComponent<WeaponSystem>();
         playerMovement = GetComponent<PlayerMovement>();
+        inventory = GetComponent<Inventory>();
         animator = GetComponent<Animator>();
     }
 
@@ -38,8 +40,13 @@ public class PlayerAim : MonoBehaviour
             if (Vector3.Distance(transform.position + weaponHolder.position, mousePosition) > 0.1f) 
             {
                 weaponHolder.right = direction;
-                
-                animator.SetInteger("WeaponID",(int)weaponSystem.equippedWeapon.type);
+
+
+                if (!inventory.selectedItem.isHealingItem) 
+                    animator.SetInteger("WeaponID",(int)weaponSystem.equippedWeapon.type);
+                else
+                    animator.SetInteger("WeaponID", 10);
+
                 playerMovement.speed = 3f;
                 aimLine.enabled = true;
                 aimLine.SetPosition(0, transform.position + direction);

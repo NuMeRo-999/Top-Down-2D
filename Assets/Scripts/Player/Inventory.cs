@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -7,6 +8,8 @@ public class Inventory : MonoBehaviour
     public int selectedIndex = 0;
     public WeaponSystem weaponSystem;
     private Player player;
+    public InventoryItem selectedItem;
+    public TextMeshProUGUI ammoText;
 
     void Awake()
     {
@@ -32,7 +35,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            InventoryItem selectedItem = items[selectedIndex];
+            selectedItem = items[selectedIndex];
 
             if (selectedItem != null)
             {
@@ -57,7 +60,7 @@ public class Inventory : MonoBehaviour
             } while (items[selectedIndex] == null);
             UpdateEquippedItem();
         }
-        else if (scroll < 0f)
+        else if (scroll < 0f || Input.GetKeyDown(KeyCode.DownArrow))
         {
             do
             {
@@ -69,7 +72,9 @@ public class Inventory : MonoBehaviour
 
     void UpdateEquippedItem()
     {
-        InventoryItem selectedItem = items[selectedIndex];
+        selectedItem = items[selectedIndex];
+        if (!selectedItem.isWeapon) ammoText.enabled = false;
+        else ammoText.enabled = true;
 
         if (selectedItem != null)
         {
