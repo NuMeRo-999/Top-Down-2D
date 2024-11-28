@@ -37,6 +37,7 @@ public class WeaponSystem : MonoBehaviour
         {
             if (equippedWeapon != null && playerAim.isAiming && inventory.selectedItem.isWeapon)
             {
+                if (equippedWeapon.currentAmmo == 0) StartCoroutine(Reload());
                 Fire();
             }
             else
@@ -57,6 +58,7 @@ public class WeaponSystem : MonoBehaviour
         if (equippedWeapon.currentAmmo > 0)
         {
             equippedWeapon.currentAmmo--;
+            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
 
             switch (equippedWeapon.type)
             {
@@ -89,6 +91,9 @@ public class WeaponSystem : MonoBehaviour
         if (equippedWeapon.totalAmmo > 0)
         {
             Debug.Log("Recargando...");
+
+            ammoText.text = "reloading...";
+            ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
 
             int neededAmmo = equippedWeapon.maxAmmo - equippedWeapon.currentAmmo;
@@ -96,6 +101,8 @@ public class WeaponSystem : MonoBehaviour
 
             equippedWeapon.currentAmmo += ammoToReload;
             equippedWeapon.totalAmmo -= ammoToReload;
+            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
+            ammoText.color = Color.white;
 
             Debug.Log("Recarga completada.");
         }

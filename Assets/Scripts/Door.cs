@@ -19,12 +19,14 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        openDoor();
+        if (other.tag != "Bullet")
+            openDoor();
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        closeDoor();
+        if (other.tag != "Bullet")
+            closeDoor();
     }
 
     public void openDoor()
