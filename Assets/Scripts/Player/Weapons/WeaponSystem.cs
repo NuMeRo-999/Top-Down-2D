@@ -37,7 +37,6 @@ public class WeaponSystem : MonoBehaviour
         {
             if (equippedWeapon != null && playerAim.isAiming && inventory.selectedItem.isWeapon)
             {
-                if (equippedWeapon.currentAmmo == 0) StartCoroutine(Reload());
                 Fire();
             }
             else
@@ -58,7 +57,6 @@ public class WeaponSystem : MonoBehaviour
         if (equippedWeapon.currentAmmo > 0)
         {
             equippedWeapon.currentAmmo--;
-            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
 
             switch (equippedWeapon.type)
             {
@@ -91,9 +89,6 @@ public class WeaponSystem : MonoBehaviour
         if (equippedWeapon.totalAmmo > 0)
         {
             Debug.Log("Recargando...");
-
-            ammoText.text = "reloading...";
-            ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
 
             int neededAmmo = equippedWeapon.maxAmmo - equippedWeapon.currentAmmo;
@@ -101,8 +96,6 @@ public class WeaponSystem : MonoBehaviour
 
             equippedWeapon.currentAmmo += ammoToReload;
             equippedWeapon.totalAmmo -= ammoToReload;
-            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
-            ammoText.color = Color.white;
 
             Debug.Log("Recarga completada.");
         }
@@ -115,23 +108,32 @@ public class WeaponSystem : MonoBehaviour
     void FireBullet(float range)
     {
         Debug.Log($"Disparando bala con alcance {range}.");
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, 90));
-        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * 20, ForceMode2D.Impulse);
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 20, ForceMode2D.Impulse);
         Destroy(bullet, range);
     }
 
-    void FireShotgun()
+   void FireShotgun()
+{
+    if (equippedWeapon is Shotgun shotgun)
     {
-        Shotgun shotgun = (Shotgun)equippedWeapon; // Cast a Shotgun
+        float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
+        float angle = -shotgun.spreadAngle / 2;
+
         for (int i = 0; i < shotgun.pelletCount; i++)
         {
-            // Dispersión por cada perdigón
-            float angle = Random.Range(-shotgun.spreadAngle, shotgun.spreadAngle);
-            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.right;
+            Debug.Log(angle);
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
 
-            FireBullet(shotgun.range);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
+
+            Destroy(bullet, shotgun.range);
+
+            angle += angleStep;
         }
     }
+}
 
     void FireRocket()
     {

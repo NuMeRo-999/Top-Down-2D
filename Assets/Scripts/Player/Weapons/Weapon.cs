@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Weapon
+public class Weapon : ScriptableObject
 {
     public string weaponName;
     public Sprite icon;
