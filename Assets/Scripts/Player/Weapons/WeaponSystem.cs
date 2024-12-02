@@ -57,6 +57,7 @@ public class WeaponSystem : MonoBehaviour
         if (equippedWeapon.currentAmmo > 0)
         {
             equippedWeapon.currentAmmo--;
+            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
 
             switch (equippedWeapon.type)
             {
@@ -88,7 +89,8 @@ public class WeaponSystem : MonoBehaviour
     {
         if (equippedWeapon.totalAmmo > 0)
         {
-            Debug.Log("Recargando...");
+            ammoText.text = "reloading...";
+            ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
 
             int neededAmmo = equippedWeapon.maxAmmo - equippedWeapon.currentAmmo;
@@ -96,6 +98,9 @@ public class WeaponSystem : MonoBehaviour
 
             equippedWeapon.currentAmmo += ammoToReload;
             equippedWeapon.totalAmmo -= ammoToReload;
+
+            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
+            ammoText.color = Color.white;
 
             Debug.Log("Recarga completada.");
         }
@@ -113,27 +118,27 @@ public class WeaponSystem : MonoBehaviour
         Destroy(bullet, range);
     }
 
-   void FireShotgun()
-{
-    if (equippedWeapon is Shotgun shotgun)
+    void FireShotgun()
     {
-        float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
-        float angle = -shotgun.spreadAngle / 2;
-
-        for (int i = 0; i < shotgun.pelletCount; i++)
+        if (equippedWeapon is Shotgun shotgun)
         {
-            Debug.Log(angle);
-            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
+            float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
+            float angle = -shotgun.spreadAngle / 2;
 
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
-            bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
+            for (int i = 0; i < shotgun.pelletCount; i++)
+            {
+                Debug.Log(angle);
+                Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
 
-            Destroy(bullet, shotgun.range);
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
+                bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
 
-            angle += angleStep;
+                Destroy(bullet, shotgun.range);
+
+                angle += angleStep;
+            }
         }
     }
-}
 
     void FireRocket()
     {
