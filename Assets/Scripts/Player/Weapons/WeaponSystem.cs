@@ -113,27 +113,27 @@ public class WeaponSystem : MonoBehaviour
         Destroy(bullet, range);
     }
 
-   void FireShotgun()
-{
-    if (equippedWeapon is Shotgun shotgun)
+    void FireShotgun()
     {
-        float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
-        float angle = -shotgun.spreadAngle / 2;
-
-        for (int i = 0; i < shotgun.pelletCount; i++)
+        if (equippedWeapon is Shotgun shotgun)
         {
-            Debug.Log(angle);
-            Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
+            float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
+            float angle = -shotgun.spreadAngle / 2;
 
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
-            bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
+            for (int i = 0; i < shotgun.pelletCount; i++)
+            {
+                Debug.Log(angle);
+                Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
 
-            Destroy(bullet, shotgun.range);
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
+                bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
 
-            angle += angleStep;
+                Destroy(bullet, shotgun.range);
+
+                angle += angleStep;
+            }
         }
     }
-}
 
     void FireRocket()
     {
@@ -144,7 +144,73 @@ public class WeaponSystem : MonoBehaviour
 
     void ThrowExplosive()
     {
-        Debug.Log("Lanzando explosivo.");
-        // Instanciar explosivo y manejar temporizador/detonación
+        if (equippedWeapon is Explosive explosive)
+        {
+            // Generar una rotación aleatoria en el eje Z
+            float randomRotationZ = Random.Range(0f, 360f);
+            Quaternion randomRotation = Quaternion.Euler(0, 0, randomRotationZ);
+
+            // Instanciar la bomba con la rotación aleatoria
+            GameObject grenade = Instantiate(explosive.prefab, firePoint.position, randomRotation);
+
+            // Mover la bomba una pequeña distancia hacia adelante
+            StartCoroutine(MoveAndStop(grenade, explosive));
+        }
     }
+
+
+    IEnumerator MoveAndStop(GameObject grenade, Explosive explosive)
+    {
+        // Obtener la posición inicial
+        Vector3 startPosition = grenade.transform.position;
+        Vector3 targetPosition = startPosition + firePoint.right * explosive.throwDistance;
+
+        float elapsedTime = 0f;
+
+        // Mover el explosivo hacia adelante durante un tiempo breve
+        while (elapsedTime < explosive.moveTime)
+        {
+            grenade.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / explosive.moveTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Asegurarse de que el explosivo se detiene exactamente en la posición objetivo
+        grenade.transform.position = targetPosition;
+
+        // Iniciar la explosión tras el temporizador
+        StartCoroutine(HandleExplosion(grenade, explosive));
+    }
+
+
+    IEnumerator HandleExplosion(GameObject grenade, Explosive explosive)
+    {
+        // Esperar el tiempo de la detonación
+        yield return new WaitForSeconds(explosive.detonationTime);
+
+        // Obtener la posición de la explosión
+        Vector3 explosionPosition = grenade.transform.position;
+
+        // Detectar colisiones dentro del radio de explosión
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosive.explosionRadius);
+        // foreach (Collider2D obj in hitObjects)
+        // {
+        //     // Aplicar daño si el objeto tiene un componente de salud
+        //     Health health = obj.GetComponent<Health>();
+        //     if (health != null)
+        //     {
+        //         health.TakeDamage(explosive.damage);
+        //     }
+        // }
+
+        // Instanciar el sprite de la marca de explosión
+        Instantiate(explosive.explosionMarkPrefab, explosionPosition, Quaternion.identity);
+
+        // Destruir la bomba después de la explosión
+        Destroy(grenade);
+
+        // Efecto visual y/o sonoro de explosión
+        Instantiate(explosive.explosionEffectPrefab, explosionPosition, Quaternion.identity);
+    }
+
 }

@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Explosive : MonoBehaviour
+[CreateAssetMenu(menuName = "Weapons/Explosive")]
+public class Explosive : Weapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject prefab;
+    public GameObject explosionEffectPrefab;
+    public GameObject explosionMarkPrefab;
+    public Animator explosionAnimator;
+    public float throwDistance = 2f;
+    public float moveTime = 0.5f;
+    public float detonationTime = 3f;
+    public float explosionRadius = 5f;
+    public int damage = 50;
 }
+
