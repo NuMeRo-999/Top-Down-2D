@@ -9,10 +9,8 @@ public class BloodParticles : MonoBehaviour
     {
         if (bloodParticlesPrefab != null)
         {
-            // Instanciar las partículas en la posición del enemigo
             GameObject bloodParticles = Instantiate(bloodParticlesPrefab, transform.position, Quaternion.identity);
 
-            // Acceder al sistema de partículas para configurar el burst
             ParticleSystem ps = bloodParticles.GetComponent<ParticleSystem>();
             if (ps != null)
             {
@@ -21,8 +19,7 @@ public class BloodParticles : MonoBehaviour
                 emission.SetBursts(new ParticleSystem.Burst[] { burst });
             }
 
-            // Destruir las partículas después de su duración
-            // Destroy(bloodParticles, 2f);
+            Destroy(bloodParticles, 2f);
         }
         else
         {
@@ -32,7 +29,6 @@ public class BloodParticles : MonoBehaviour
 
     public void SpawnBloodParticlesAndStain()
     {
-        // Generar partículas de sangre
         if (bloodParticlesPrefab != null)
         {
             GameObject bloodParticles = Instantiate(bloodParticlesPrefab, transform.position, Quaternion.identity);
@@ -46,10 +42,8 @@ public class BloodParticles : MonoBehaviour
         // Generar la mancha de sangre en el suelo de forma aleatoria
         if (bloodStainPrefabs != null && bloodStainPrefabs.Length > 0)
         {
-            // Seleccionar un prefab aleatorio del array
             GameObject randomBloodStain = bloodStainPrefabs[Random.Range(0, bloodStainPrefabs.Length)];
 
-            // Instanciar la mancha de sangre seleccionada
             GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity);
             bloodStain.transform.Rotate(0f, 0f, Random.Range(0f, 360f)); // Rotación aleatoria para variedad
         }
