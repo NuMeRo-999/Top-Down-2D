@@ -18,16 +18,14 @@ MonoBehaviour:
   fireRate: 1
   range: 2
   maxAmmo: 10
-  currentAmmo: 147
+  currentAmmo: 90
   totalAmmo: 10
   reloadTime: 1
   type: 3
-  prefab: {fileID: 1303520947291922225, guid: cb87554fd19778e49ba013d812267abe, type: 3}
-  explosionEffectPrefab: {fileID: 8916736806053037133, guid: 8dcacc3a46d362a49993361a0812a3c3, type: 3}
-  explosionMarkPrefab: {fileID: 2959582050080435137, guid: 2685ca6c4f3ae1b448bdef31e3da1a74, type: 3}
-  explosionAnimator: {fileID: 0}
+  prefab: {fileID: 8486682997533531313, guid: cb87554fd19778e49ba013d812267abe, type: 3}
+  explosionEffectPrefab: {fileID: 4635996110604802569, guid: df2aaa6208308b745b3078f91bc85a36, type: 3}
+  explosionMarkPrefab: {fileID: 537686268860435781, guid: 73af13ae608ad1b4ca27a49265f5e596, type: 3}
   throwDistance: 2
   moveTime: 0.3
   detonationTime: 3
   explosionRadius: 5
-  damage: 50

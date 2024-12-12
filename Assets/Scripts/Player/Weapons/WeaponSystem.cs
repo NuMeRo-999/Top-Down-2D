@@ -198,24 +198,29 @@ public class WeaponSystem : MonoBehaviour
 
         // Detectar colisiones dentro del radio de explosión
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosive.explosionRadius);
-        // foreach (Collider2D obj in hitObjects)
-        // {
-        //     // Aplicar daño si el objeto tiene un componente de salud
-        //     Health health = obj.GetComponent<Health>();
-        //     if (health != null)
-        //     {
-        //         health.TakeDamage(explosive.damage);
-        //     }
-        // }
 
-        // Instanciar el sprite de la marca de explosión
-        Instantiate(explosive.explosionMarkPrefab, explosionPosition, Quaternion.identity);
+        foreach (Collider2D obj in hitObjects)
+        {
+            Debug.Log(obj.name);
+            //     // Aplicar daño si el objeto tiene un componente de salud
+            //     Health health = obj.GetComponent<Health>();
+            //     if (health != null)
+            //     {
+            //         health.TakeDamage(explosive.damage);
+            //     }
+        }
 
-        // Destruir la bomba después de la explosión
         Destroy(grenade);
 
-        // Efecto visual y/o sonoro de explosión
-        Instantiate(explosive.explosionEffectPrefab, explosionPosition, Quaternion.identity);
+    }
+
+    private void OnDrawGizmos(GameObject grenade)
+    {
+        if (equippedWeapon is Explosive explosive)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(grenade.transform.position, explosive.explosionRadius);
+        }
     }
 
 }

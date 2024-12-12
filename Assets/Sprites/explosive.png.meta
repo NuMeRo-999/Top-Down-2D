@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a4bd9c06422c6f04ba2b5b3b5daa8f34
+guid: 36a7beb83cfe7bc4fab25584d88cb44e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5173698173098673835
-    second: 0023_0
+      213: -9113482100956520216
+    second: explosive_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 20
+  spritePixelsToUnits: 13
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 0023_0
+      name: explosive_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 22
-        width: 30
-        height: 41
+        x: 0
+        y: 0
+        width: 8
+        height: 4
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ba642a6b31bacc740800000000000000
-      internalID: 5173698173098673835
+      spriteID: 8e02b918058668180800000000000000
+      internalID: -9113482100956520216
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      0023_0: 5173698173098673835
+      explosive_0: -9113482100956520216
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
