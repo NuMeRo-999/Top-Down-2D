@@ -18,7 +18,7 @@ MonoBehaviour:
   fireRate: 1
   range: 2
   maxAmmo: 10
-  currentAmmo: 90
+  currentAmmo: 182
   totalAmmo: 10
   reloadTime: 1
   type: 3
@@ -28,4 +28,4 @@ MonoBehaviour:
   throwDistance: 2
   moveTime: 0.3
   detonationTime: 3
-  explosionRadius: 5
+  explosionRadius: 2.5

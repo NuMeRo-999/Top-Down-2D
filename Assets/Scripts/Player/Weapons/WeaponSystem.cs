@@ -58,6 +58,7 @@ public class WeaponSystem : MonoBehaviour
         {
             equippedWeapon.currentAmmo--;
             ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
+            Debug.Log(equippedWeapon.type);
 
             switch (equippedWeapon.type)
             {
@@ -142,23 +143,30 @@ public class WeaponSystem : MonoBehaviour
 
     void FireRocket()
     {
-        RocketLauncher launcher = (RocketLauncher)equippedWeapon;
-        Debug.Log($"Lanzando cohete con radio de explosión {launcher.explosionRadius}.");
-        // Instanciar cohete y aplicar lógica de explosión
+        // if (equippedWeapon is RocketLauncher rocketLauncher)
+        // {
+        Debug.Log("Lanzando cohete");
+            GameObject rocket = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+            Rigidbody2D rb = rocket.GetComponent<Rigidbody2D>();
+            rocket.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 20, ForceMode2D.Impulse);
+
+            // rb.AddForce(firePoint.right * rocketLauncher.speed, ForceMode2D.Impulse);
+
+            // Configurar destrucción tras un rango máximo si no impacta nada
+            // Destroy(rocket, rocketLauncher.maxRange / rocketLauncher.speed);
+        // }
     }
 
     void ThrowExplosive()
     {
         if (equippedWeapon is Explosive explosive)
         {
-            // Generar una rotación aleatoria en el eje Z
             float randomRotationZ = Random.Range(0f, 360f);
             Quaternion randomRotation = Quaternion.Euler(0, 0, randomRotationZ);
 
-            // Instanciar la bomba con la rotación aleatoria
             GameObject grenade = Instantiate(explosive.prefab, firePoint.position, randomRotation);
 
-            // Mover la bomba una pequeña distancia hacia adelante
             StartCoroutine(MoveAndStop(grenade, explosive));
         }
     }
@@ -166,61 +174,63 @@ public class WeaponSystem : MonoBehaviour
 
     IEnumerator MoveAndStop(GameObject grenade, Explosive explosive)
     {
-        // Obtener la posición inicial
-        Vector3 startPosition = grenade.transform.position;
-        Vector3 targetPosition = startPosition + firePoint.right * explosive.throwDistance;
+        Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.linearVelocity = firePoint.right * 5;
 
         float elapsedTime = 0f;
 
-        // Mover el explosivo hacia adelante durante un tiempo breve
         while (elapsedTime < explosive.moveTime)
         {
-            grenade.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / explosive.moveTime);
             elapsedTime += Time.deltaTime;
+
+            Collider2D hit = Physics2D.OverlapCircle(grenade.transform.position, 0.1f);
+            if (hit != null && !hit.CompareTag("Player"))
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Static;
+                break;
+            }
+
             yield return null;
         }
 
-        // Asegurarse de que el explosivo se detiene exactamente en la posición objetivo
-        grenade.transform.position = targetPosition;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
 
-        // Iniciar la explosión tras el temporizador
         StartCoroutine(HandleExplosion(grenade, explosive));
     }
 
 
     IEnumerator HandleExplosion(GameObject grenade, Explosive explosive)
     {
-        // Esperar el tiempo de la detonación
         yield return new WaitForSeconds(explosive.detonationTime);
 
-        // Obtener la posición de la explosión
         Vector3 explosionPosition = grenade.transform.position;
 
-        // Detectar colisiones dentro del radio de explosión
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosive.explosionRadius);
 
         foreach (Collider2D obj in hitObjects)
         {
-            Debug.Log(obj.name);
-            //     // Aplicar daño si el objeto tiene un componente de salud
-            //     Health health = obj.GetComponent<Health>();
-            //     if (health != null)
-            //     {
-            //         health.TakeDamage(explosive.damage);
-            //     }
+
+            if (obj.tag == "Player" || obj.tag == "Enemy")
+            {
+                Player player = obj.GetComponent<Player>();
+                if (player != null && player.currentHealth > 0)
+                {
+                    player.TakeDamage(explosive.damage);
+                }
+
+                Enemy enemy = obj.GetComponent<Enemy>();
+                if (enemy != null && enemy.currentHealth > 0)
+                {
+                    enemy.TakeDamage(explosive.damage);
+                }
+            }
         }
 
         Destroy(grenade);
 
+        Instantiate(explosive.explosionEffectPrefab, explosionPosition, Quaternion.identity);
     }
-
-    private void OnDrawGizmos(GameObject grenade)
-    {
-        if (equippedWeapon is Explosive explosive)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(grenade.transform.position, explosive.explosionRadius);
-        }
-    }
-
 }
