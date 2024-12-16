@@ -18,9 +18,9 @@ MonoBehaviour:
   fireRate: 5
   range: 2
   maxAmmo: 10
-  currentAmmo: 160
+  currentAmmo: 86
   totalAmmo: 134
   reloadTime: 2
-  type: 4
+  type: 2
   pelletCount: 5
   spreadAngle: 40

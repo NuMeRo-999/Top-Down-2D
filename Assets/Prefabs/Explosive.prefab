@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7045170545298041288}
   - component: {fileID: 8431918418316446693}
   - component: {fileID: 6347383658216754093}
+  - component: {fileID: 5535265932132211245}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Explosive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,3 +116,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5535265932132211245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8486682997533531313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489b7e346a2e240499665059ec746261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

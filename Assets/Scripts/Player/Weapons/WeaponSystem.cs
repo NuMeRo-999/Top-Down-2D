@@ -128,7 +128,6 @@ public class WeaponSystem : MonoBehaviour
 
             for (int i = 0; i < shotgun.pelletCount; i++)
             {
-                Debug.Log(angle);
                 Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
 
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
@@ -167,70 +166,7 @@ public class WeaponSystem : MonoBehaviour
 
             GameObject grenade = Instantiate(explosive.prefab, firePoint.position, randomRotation);
 
-            StartCoroutine(MoveAndStop(grenade, explosive));
+            StartCoroutine(grenade.GetComponent<ExplosiveMonobehaviour>().MoveAndStop(firePoint, grenade, explosive));
         }
-    }
-
-
-    IEnumerator MoveAndStop(GameObject grenade, Explosive explosive)
-    {
-        Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.linearVelocity = firePoint.right * 5;
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < explosive.moveTime)
-        {
-            elapsedTime += Time.deltaTime;
-
-            Collider2D hit = Physics2D.OverlapCircle(grenade.transform.position, 0.1f);
-            if (hit != null && !hit.CompareTag("Player"))
-            {
-                rb.linearVelocity = Vector2.zero;
-                rb.bodyType = RigidbodyType2D.Static;
-                break;
-            }
-
-            yield return null;
-        }
-
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Static;
-
-        StartCoroutine(HandleExplosion(grenade, explosive));
-    }
-
-
-    IEnumerator HandleExplosion(GameObject grenade, Explosive explosive)
-    {
-        yield return new WaitForSeconds(explosive.detonationTime);
-
-        Vector3 explosionPosition = grenade.transform.position;
-
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosive.explosionRadius);
-
-        foreach (Collider2D obj in hitObjects)
-        {
-
-            if (obj.tag == "Player" || obj.tag == "Enemy")
-            {
-                Player player = obj.GetComponent<Player>();
-                if (player != null && player.currentHealth > 0)
-                {
-                    player.TakeDamage(explosive.damage);
-                }
-
-                Enemy enemy = obj.GetComponent<Enemy>();
-                if (enemy != null && enemy.currentHealth > 0)
-                {
-                    enemy.TakeDamage(explosive.damage);
-                }
-            }
-        }
-
-        Destroy(grenade);
-
-        Instantiate(explosive.explosionEffectPrefab, explosionPosition, Quaternion.identity);
     }
 }

@@ -10,13 +10,9 @@ public class Bullet : MonoBehaviour
         weaponSystem = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponSystem>();
     }
 
-    void Update()
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Bullet"))
+        if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Bullet") && !other.gameObject.CompareTag("Door") && !other.gameObject.CompareTag("EnemyCollider"))
         {
             Destroy(gameObject);
         }

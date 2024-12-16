@@ -74,7 +74,6 @@ public class EnemyMovement : MonoBehaviour
   {
     if (other.CompareTag("Player"))
     {
-      // Activar el movimiento de órbita alrededor del jugador
       isOrbitingPlayer = true;
     }
   }
@@ -83,7 +82,6 @@ public class EnemyMovement : MonoBehaviour
   {
     if (other.CompareTag("Player"))
     {
-      // Desactivar el movimiento de órbita
       isOrbitingPlayer = false;
     }
   }
