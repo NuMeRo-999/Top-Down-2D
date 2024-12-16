@@ -52,7 +52,7 @@ public class ExplosiveMonobehaviour : MonoBehaviour
         foreach (Collider2D obj in hitObjects)
         {
 
-            if (obj.tag == "Player" || obj.tag == "Enemy")
+            if (obj.tag is "Player" or "Enemy")
             {
                 Player player = obj.GetComponent<Player>();
                 if (player != null && player.currentHealth > 0)

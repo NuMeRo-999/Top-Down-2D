@@ -142,19 +142,14 @@ public class WeaponSystem : MonoBehaviour
 
     void FireRocket()
     {
-        // if (equippedWeapon is RocketLauncher rocketLauncher)
-        // {
-        Debug.Log("Lanzando cohete");
-            GameObject rocket = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if (equippedWeapon is RocketLauncher rocketLauncher)
+        {
+            Debug.Log("Lanzando cohete");
+            GameObject rocket = Instantiate(rocketLauncher.rocketPrefab, firePoint.position, firePoint.rotation);
 
             Rigidbody2D rb = rocket.GetComponent<Rigidbody2D>();
             rocket.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 20, ForceMode2D.Impulse);
-
-            // rb.AddForce(firePoint.right * rocketLauncher.speed, ForceMode2D.Impulse);
-
-            // Configurar destrucción tras un rango máximo si no impacta nada
-            // Destroy(rocket, rocketLauncher.maxRange / rocketLauncher.speed);
-        // }
+        }
     }
 
     void ThrowExplosive()

@@ -5,9 +5,9 @@ public class Enemy : MonoBehaviour
     public int currentHealth;
     [SerializeField] int maxHealth = 20;
     [SerializeField] int attackDamage = 10;
-    [SerializeField] float attackRange = 2f; // Longitud del rayo
-    [SerializeField] float attackCooldown = 1f; // Tiempo entre ataques
-    [SerializeField] LayerMask attackLayer; // Capa que incluye al jugador y objetos relevantes
+    [SerializeField] float attackRange = 2f;
+    [SerializeField] float attackCooldown = 1f;
+    [SerializeField] LayerMask attackLayer;
 
     private BloodParticles bloodParticles;
     private Animator animator;
@@ -22,7 +22,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // Intentar atacar si se cumple el cooldown
         if (Time.time >= lastAttackTime + attackCooldown)
         {
             Attack();
@@ -39,7 +38,6 @@ public class Enemy : MonoBehaviour
 
         foreach (RaycastHit2D hit in hits)
         {
-            // Verificar si el rayo golpea al jugador y que el collider no sea un trigger
             if (hit.collider != null && hit.collider.CompareTag("Player") && !hit.collider.isTrigger)
             {
                 animator.SetTrigger("Attack");
