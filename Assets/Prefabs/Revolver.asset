@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Shotgun
   icon: {fileID: 0}
-  damage: 5
+  damage: 10
   fireRate: 5
   range: 2
   maxAmmo: 10
-  currentAmmo: 65
+  currentAmmo: 63
   totalAmmo: 134
   reloadTime: 2
   type: 1

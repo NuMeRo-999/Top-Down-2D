@@ -21,6 +21,6 @@ MonoBehaviour:
   currentAmmo: 65
   totalAmmo: 134
   reloadTime: 2
-  type: 1
+  type: 0
   pelletCount: 5
   spreadAngle: 40
