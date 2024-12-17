@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     animator = GetComponent<Animator>();
   }
 
+  void Update()
+  {
+    MousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+  }
+
   void FixedUpdate()
   {
     smoothedMovementInput = Vector2.SmoothDamp(
@@ -44,10 +49,5 @@ public class PlayerMovement : MonoBehaviour
     else
       animator.SetBool("run", false);
 
-  }
-
-  private void OnMousePos(InputValue inputValue)
-  {
-    MousePos = cam.ScreenToWorldPoint(inputValue.Get<Vector2>());
   }
 }
