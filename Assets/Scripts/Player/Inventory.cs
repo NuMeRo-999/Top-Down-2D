@@ -90,6 +90,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void AddItem(InventoryItem item)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] == null)
+            {
+                items[i] = item;
+                break;
+            }
+        }
+        UpdateEquippedItem();
+    }
 
     bool IsInventoryEmpty()
     {
