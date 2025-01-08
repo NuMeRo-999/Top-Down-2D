@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour
     public List<InventoryItem> items = new List<InventoryItem>();
     public GameObject slotPrefab;
     public Sprite itemBackground;
+    private Animator animator;
     public bool openChest = false;
 
     private bool isPlayerInRange = false;
@@ -17,6 +18,8 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         if (chestMark != null)
             chestMark.SetActive(false);
 
@@ -26,6 +29,8 @@ public class Chest : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("isOpen", openChest);
+
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             OpenChest();
@@ -41,6 +46,11 @@ public class Chest : MonoBehaviour
             else if (scroll < 0f)
             {
                 SelectItem(selectedItemIndex + 1);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                CollectItem();
             }
         }
     }
@@ -91,54 +101,91 @@ public class Chest : MonoBehaviour
 
         if (lootUI != null)
         {
+            foreach (Transform child in lootUI.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            selectedItemIndex = 0;
+
             for (int i = 0; i < items.Count; i++)
             {
                 InventoryItem item = items[i];
                 GameObject slot = Instantiate(slotPrefab, lootUI.transform);
                 float spacing = 10f;
                 slot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -i * (slot.GetComponent<RectTransform>().sizeDelta.y + spacing));
-                
-                slot.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
-                slot.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
 
-                // if (i == selectedItemIndex)
-                // {
-                //     slot.GetComponent<UnityEngine.UI.Image>().sprite = itemBackground;
-                // }
+                var text = slot.GetComponentInChildren<TextMeshProUGUI>();
+                text.text = item.itemName;
+                text.color = Color.white;
+
+                var image = slot.GetComponent<UnityEngine.UI.Image>();
+                if (i == selectedItemIndex)
+                {
+                    image.sprite = itemBackground;
+                    image.enabled = true;
+                }
+                else
+                {
+                    image.enabled = false;
+                }
             }
+
             lootUI.SetActive(true);
             openChest = true;
         }
 
         chestMark.SetActive(false);
-        isPlayerInRange = false;   
+        isPlayerInRange = false;
     }
+
 
     void SelectItem(int index)
     {
-        if (index < 0 || index >= items.Count)
-        {
-            return;
-        }
+        if (index < 0 || index >= items.Count) return;
 
         selectedItemIndex = index;
 
-        foreach (Transform child in lootUI.transform)
+        for (int i = 0; i < lootUI.transform.childCount; i++)
         {
+            var child = lootUI.transform.GetChild(i);
             var image = child.GetComponent<UnityEngine.UI.Image>();
-            if (child.GetSiblingIndex() == selectedItemIndex)
+
+            if (i == selectedItemIndex)
             {
-            image.enabled = true;
+                image.sprite = itemBackground;
+                image.enabled = true;
             }
             else
             {
-            image.enabled = false;
+                image.enabled = false;
             }
         }
+    }
 
-        Transform selectedItem = lootUI.transform.GetChild(selectedItemIndex);
-        var selectedItemImage = selectedItem.GetComponent<UnityEngine.UI.Image>();
-        selectedItemImage.sprite = itemBackground;
-        selectedItemImage.enabled = true;
+    void CollectItem()
+    {
+        if (selectedItemIndex < 0 || selectedItemIndex >= items.Count) return;
+
+        InventoryItem selectedItem = items[selectedItemIndex];
+        inventory.AddItem(selectedItem);
+
+        Debug.Log($"Collected item: {selectedItem.itemName}");
+
+        items.RemoveAt(selectedItemIndex);
+
+        // Actualiza la UI del cofre
+        foreach (Transform child in lootUI.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        OpenChest(); // Vuelve a generar la UI con los ítems restantes
+
+        if (items.Count == 0)
+        {
+            lootUI.SetActive(false);
+            openChest = false;
+            Debug.Log("All items collected, chest is empty!");
+        }
     }
 }
