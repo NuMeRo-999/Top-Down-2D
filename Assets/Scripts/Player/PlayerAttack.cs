@@ -6,6 +6,7 @@ public class PlayerAttack : MonoBehaviour
   public Transform attackPoint;
   public float attackRange = 0.3f;
   public LayerMask enemyLayers;
+  public Chest chest;
 
   void Start()
   {
@@ -22,6 +23,8 @@ public class PlayerAttack : MonoBehaviour
 
   void Attack()
   {
+    if (chest.openChest) return;
+    
     animator.SetTrigger("Attack");
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -30,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
     {
       if (!enemy.isTrigger && enemy.gameObject.CompareTag("Enemy") && enemy.GetComponent<Enemy>().currentHealth > 0)
       {
-      enemy.GetComponent<Enemy>().TakeDamage(10);
+        enemy.GetComponent<Enemy>().TakeDamage(10);
       }
     }
   }

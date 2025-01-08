@@ -13,7 +13,7 @@ public class Chest : MonoBehaviour
     public bool openChest = false;
 
     private bool isPlayerInRange = false;
-    public int selectedItemIndex = -1;
+    public int selectedItemIndex = 0;
 
     void Start()
     {
@@ -101,10 +101,10 @@ public class Chest : MonoBehaviour
                 slot.GetComponentInChildren<TextMeshProUGUI>().text = item.itemName;
                 slot.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
 
-                if (i == selectedItemIndex)
-                {
-                    slot.GetComponent<UnityEngine.UI.Image>().sprite = itemBackground;
-                }
+                // if (i == selectedItemIndex)
+                // {
+                //     slot.GetComponent<UnityEngine.UI.Image>().sprite = itemBackground;
+                // }
             }
             lootUI.SetActive(true);
             openChest = true;

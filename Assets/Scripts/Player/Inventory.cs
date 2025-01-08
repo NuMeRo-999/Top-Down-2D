@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
     public InventoryItem selectedItem;
     public TextMeshProUGUI ammoText;
 
+    public Chest chest;
+
     void Awake()
     {
         // Rellena espacios vacíos con null
@@ -21,6 +23,7 @@ public class Inventory : MonoBehaviour
 
         UpdateEquippedItem();
     }
+
 
     private void Start()
     {
@@ -47,6 +50,9 @@ public class Inventory : MonoBehaviour
     void HandleSelectionInput()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (chest.openChest) return;
+        
 
         if (scroll > 0f) // Cambia al espacio anterior en el inventario
         {
