@@ -6,6 +6,7 @@ public class Chest : MonoBehaviour
 {
     public GameObject chestMark;
     public GameObject lootUI;
+    public GameObject lootUICanvas;
     public Inventory inventory;
     public List<InventoryItem> items = new List<InventoryItem>();
     public GameObject slotPrefab;
@@ -25,6 +26,9 @@ public class Chest : MonoBehaviour
 
         if (lootUI != null)
             lootUI.SetActive(false);
+
+        if (lootUICanvas != null)
+            lootUICanvas.SetActive(false);
     }
 
     void Update()
@@ -85,6 +89,7 @@ public class Chest : MonoBehaviour
             {
                 isPlayerInRange = false;
                 lootUI.SetActive(false);
+                lootUICanvas.SetActive(false);
                 openChest = false;
                 foreach (Transform child in lootUI.transform)
                 {
@@ -113,7 +118,8 @@ public class Chest : MonoBehaviour
                 InventoryItem item = items[i];
                 GameObject slot = Instantiate(slotPrefab, lootUI.transform);
                 float spacing = 10f;
-                slot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -i * (slot.GetComponent<RectTransform>().sizeDelta.y + spacing));
+                float initialHeight = 35f;
+                slot.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, initialHeight - i * (slot.GetComponent<RectTransform>().sizeDelta.y + spacing));
 
                 var text = slot.GetComponentInChildren<TextMeshProUGUI>();
                 text.text = item.itemName;
@@ -132,13 +138,13 @@ public class Chest : MonoBehaviour
             }
 
             lootUI.SetActive(true);
+            lootUICanvas.SetActive(true);
             openChest = true;
         }
 
         chestMark.SetActive(false);
         isPlayerInRange = false;
     }
-
 
     void SelectItem(int index)
     {
@@ -174,16 +180,16 @@ public class Chest : MonoBehaviour
 
         items.RemoveAt(selectedItemIndex);
 
-        // Actualiza la UI del cofre
         foreach (Transform child in lootUI.transform)
         {
             Destroy(child.gameObject);
         }
-        OpenChest(); // Vuelve a generar la UI con los ítems restantes
+        OpenChest();
 
         if (items.Count == 0)
         {
             lootUI.SetActive(false);
+            lootUICanvas.SetActive(false);
             openChest = false;
             Debug.Log("All items collected, chest is empty!");
         }

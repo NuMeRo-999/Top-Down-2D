@@ -98,6 +98,19 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(InventoryItem item)
     {
+        if (item.isWeapon)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i] != null && items[i].weaponStats != null && items[i].weaponStats.weaponName == item.weaponStats.weaponName)
+                {
+                    items[i].weaponStats.totalAmmo += 10;
+                    ammoText.text = "ammo =" + item.weaponStats.currentAmmo.ToString() + "/" + item.weaponStats.totalAmmo.ToString();
+                    return;
+                }
+            }
+        }
+
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i] == null)
