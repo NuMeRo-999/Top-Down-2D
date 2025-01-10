@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
@@ -11,7 +12,7 @@ public class WeaponSystem : MonoBehaviour
     private Inventory inventory;
 
     public GameObject bulletPrefab;
-
+    public CinemachineCamera cinemachineCamera;
 
     void Start()
     {
@@ -58,7 +59,6 @@ public class WeaponSystem : MonoBehaviour
         {
             equippedWeapon.currentAmmo--;
             ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
-            Debug.Log(equippedWeapon.type);
 
             switch (equippedWeapon.type)
             {
@@ -85,6 +85,32 @@ public class WeaponSystem : MonoBehaviour
             Debug.Log("Sin munición. Recarga primero.");
         }
     }
+
+    public void ShakeCamera(float intensity, float duration)
+    {
+        if (cinemachineCamera != null)
+        {
+            var perlin = cinemachineCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
+
+            if (perlin != null)
+            {
+                perlin.AmplitudeGain = intensity;
+                StartCoroutine(ResetCameraShake(perlin, duration));
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró CinemachineBasicMultiChannelPerlin en la cámara.");
+            }
+        }
+    }
+
+    IEnumerator ResetCameraShake(CinemachineBasicMultiChannelPerlin perlin, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        perlin.AmplitudeGain = 0f;
+    }
+
 
     IEnumerator Reload()
     {
@@ -113,14 +139,15 @@ public class WeaponSystem : MonoBehaviour
 
     void FireBullet(float range)
     {
-        Debug.Log($"Disparando bala con alcance {range}.");
+        ShakeCamera(1.5f, 0.2f);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.right * 20, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.right * equippedWeapon.speed, ForceMode2D.Impulse);
         Destroy(bullet, range);
     }
 
     void FireShotgun()
     {
+        ShakeCamera(1.5f, 0.2f);
         if (equippedWeapon is Shotgun shotgun)
         {
             float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
@@ -142,6 +169,7 @@ public class WeaponSystem : MonoBehaviour
 
     void FireRocket()
     {
+        ShakeCamera(1.5f, 0.2f);
         if (equippedWeapon is RocketLauncher rocketLauncher)
         {
             Debug.Log("Lanzando cohete");
@@ -164,4 +192,5 @@ public class WeaponSystem : MonoBehaviour
             StartCoroutine(grenade.GetComponent<ExplosiveMonobehaviour>().MoveAndStop(firePoint, grenade, explosive));
         }
     }
+
 }

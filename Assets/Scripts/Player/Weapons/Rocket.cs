@@ -8,9 +8,11 @@ public class Rocket : MonoBehaviour
 
     public GameObject explosionMarkPrefab;
     public GameObject wallExplosionMarkPrefab;
+    public WeaponSystem weaponSystem;
 
     private void Start()
     {
+        weaponSystem = FindAnyObjectByType<WeaponSystem>();
         explosionRadius = rocketLauncher.explosionRadius;
         damage = rocketLauncher.damage;
     }
@@ -42,6 +44,7 @@ public class Rocket : MonoBehaviour
     private void Explode(Vector2 explosionPosition, Quaternion rotation, GameObject explosionEffect)
     {
         Instantiate(explosionEffect, explosionPosition, rotation);
+        weaponSystem.ShakeCamera(2f, 0.3f);
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosionRadius);
 

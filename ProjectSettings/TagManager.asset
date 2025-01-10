@@ -9,6 +9,7 @@ TagManager:
   - EnemyCollider
   - Wall
   - Door
+  - ChestTriggerCollider
   layers:
   - Default
   - TransparentFX

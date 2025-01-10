@@ -5,10 +5,13 @@ public class ExplosiveMonobehaviour : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    public WeaponSystem weaponSystem;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        weaponSystem = FindAnyObjectByType<WeaponSystem>();
     }
 
     public IEnumerator MoveAndStop(Transform firePoint,GameObject grenade, Explosive explosive)
@@ -48,6 +51,8 @@ public class ExplosiveMonobehaviour : MonoBehaviour
         Vector3 explosionPosition = grenade.transform.position;
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosive.explosionRadius);
+
+        weaponSystem.ShakeCamera(2f, 0.3f);
 
         foreach (Collider2D obj in hitObjects)
         {

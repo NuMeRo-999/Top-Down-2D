@@ -16,9 +16,10 @@ MonoBehaviour:
   icon: {fileID: 0}
   damage: 10
   fireRate: 1
+  speed: 50
   range: 2
   maxAmmo: 10
-  currentAmmo: 182
+  currentAmmo: 174
   totalAmmo: 10
   reloadTime: 1
   type: 3
@@ -27,5 +28,5 @@ MonoBehaviour:
   explosionMarkPrefab: {fileID: 537686268860435781, guid: 73af13ae608ad1b4ca27a49265f5e596, type: 3}
   throwDistance: 2
   moveTime: 0.3
-  detonationTime: 3
+  detonationTime: 0.5
   explosionRadius: 2.5

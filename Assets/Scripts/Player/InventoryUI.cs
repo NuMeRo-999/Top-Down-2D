@@ -54,7 +54,7 @@ public class InventoryUI : MonoBehaviour
                 // Debug.Log("Seleccionado: " + item.itemName);
                 icon.enabled = true;
                 icon.sprite = itemBackground;
-                name.color = Color.black;
+                // name.color = Color.black;
             }
             else
             {

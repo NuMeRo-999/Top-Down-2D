@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Rpg
   icon: {fileID: 0}
-  damage: 10
+  damage: 20
   fireRate: 1
+  speed: 50
   range: 2
   maxAmmo: 5
-  currentAmmo: 1976
+  currentAmmo: 1970
   totalAmmo: 2000
   reloadTime: 3
   type: 4

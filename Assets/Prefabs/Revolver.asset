@@ -16,9 +16,10 @@ MonoBehaviour:
   icon: {fileID: 0}
   damage: 10
   fireRate: 5
+  speed: 50
   range: 2
   maxAmmo: 10
-  currentAmmo: 63
+  currentAmmo: 60
   totalAmmo: 134
   reloadTime: 2
   type: 1
