@@ -3,6 +3,7 @@ using UnityEngine;
 public class BloodParticles : MonoBehaviour
 {
     [SerializeField] GameObject bloodParticlesPrefab;
+    public GameObject particleContainer;
     public GameObject[] bloodStainPrefabs; // Array de prefabs de manchas de sangre
 
     public void SpawnBloodBurst()
@@ -44,7 +45,13 @@ public class BloodParticles : MonoBehaviour
         {
             GameObject randomBloodStain = bloodStainPrefabs[Random.Range(0, bloodStainPrefabs.Length)];
 
-            GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity);
+            if (particleContainer == null)
+            {
+                Debug.LogError("Particle container is null during runtime!");
+                return;
+            }
+            
+            GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity, particleContainer.transform);
             bloodStain.transform.Rotate(0f, 0f, Random.Range(0f, 360f)); // Rotación aleatoria para variedad
         }
         else

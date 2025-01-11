@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Shotgun
   icon: {fileID: 0}
-  damage: 10
+  damage: 15
   fireRate: 5
   speed: 50
   range: 2

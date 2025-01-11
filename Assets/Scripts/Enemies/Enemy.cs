@@ -66,7 +66,15 @@ public class Enemy : MonoBehaviour
 
         bloodParticles.SpawnBloodBurst();
 
-        GetComponent<EnemyMovement>().enabled = false;
+        if (GetComponent<EnemyMovement>() != null)
+        {
+            GetComponent<EnemyMovement>().enabled = false;
+        }
+        else if (GetComponent<ShooterEnemy>() != null)
+        {
+            GetComponent<ShooterEnemy>().enabled = false;
+        }
+        
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }

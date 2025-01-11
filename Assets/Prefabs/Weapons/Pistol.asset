@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   icon: {fileID: 0}
-  damage: 5
+  damage: 10
   fireRate: 5
   speed: 50
   range: 2
   maxAmmo: 10
-  currentAmmo: 163
-  totalAmmo: 178
+  currentAmmo: 124
+  totalAmmo: 188
   reloadTime: 2
   type: 0
   pelletCount: 5

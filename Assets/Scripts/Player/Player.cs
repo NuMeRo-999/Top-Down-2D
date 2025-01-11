@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
   private Animator animator;
   private BloodParticles bloodParticles;
+  public WeaponSystem weaponSystem;
 
   void Start()
   {
@@ -16,18 +17,15 @@ public class Player : MonoBehaviour
 
     animator = GetComponent<Animator>();
     bloodParticles = GetComponent<BloodParticles>();
+    weaponSystem = GetComponent<WeaponSystem>();
     healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
-  }
-
-  void Update()
-  {
-
   }
 
   public void TakeDamage(int damage)
   {
 
     bloodParticles.SpawnBloodParticlesAndStain();
+    weaponSystem.ShakeCamera(1f, 0.3f);
 
     currentHealth -= damage;
     healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
