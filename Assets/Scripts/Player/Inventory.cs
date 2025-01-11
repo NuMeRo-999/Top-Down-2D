@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public InventoryItem selectedItem;
     public TextMeshProUGUI ammoText;
 
-    public Chest chest;
+    public Chest[] chest;
 
     void Awake()
     {
@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
     }
 
     void Update()
@@ -51,7 +52,11 @@ public class Inventory : MonoBehaviour
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-        if (chest.openChest) return;
+
+        foreach (Chest chest in chest)
+        {
+            if (chest.openChest) return;
+        }
         
 
         if (scroll > 0f) // Cambia al espacio anterior en el inventario
