@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ShooterEnemy : MonoBehaviour
@@ -16,15 +15,24 @@ public class ShooterEnemy : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float fireRate = 1f;
     [SerializeField] private float bulletSpeed = 5f;
-    
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource movementAudioSource; // Fuente de audio para caminar
+    [SerializeField] private AudioSource shootingAudioSource; // Fuente de audio para disparar
+    [SerializeField] private AudioClip[] walkAudioClips; // Array de clips para caminar
+    [SerializeField] private AudioClip[] shootAudioClips; // Array de clips para disparar
+    [SerializeField] private float movementSoundInterval = 1f;
+
     private Animator animator;
     public float fireCooldown;
+    private float movementSoundTimer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
+        movementSoundTimer = movementSoundInterval;
     }
 
     void FixedUpdate()
@@ -36,19 +44,18 @@ public class ShooterEnemy : MonoBehaviour
 
         if (distanceToPlayer > stopDistance)
         {
-            // Moverse hacia el jugador
             animator.SetBool("Attack", false);
             rb.linearVelocity = directionToPlayer * speed;
         }
         else
         {
-            // Detenerse y disparar
             rb.linearVelocity = Vector2.zero;
             animator.SetBool("Attack", true);
             Shoot();
         }
 
-        // Rotar hacia el jugador
+        HandleMovementSound();
+
         float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
         rb.rotation = Mathf.LerpAngle(rb.rotation, angle, rotationSpeed * Time.fixedDeltaTime);
     }
@@ -57,7 +64,6 @@ public class ShooterEnemy : MonoBehaviour
     {
         if (fireCooldown <= 0f)
         {
-        Debug.Log("Shooting...");
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
             if (bulletRb != null)
@@ -65,21 +71,30 @@ public class ShooterEnemy : MonoBehaviour
                 bulletRb.linearVelocity = firePoint.right * bulletSpeed;
             }
 
-            // Reiniciar el tiempo de enfriamiento
-            fireCooldown = fireRate;
+            if (shootAudioClips.Length > 0)
+            {
+                AudioClip clip = shootAudioClips[Random.Range(0, shootAudioClips.Length)];
+                shootingAudioSource.PlayOneShot(clip);
+            }
 
-            // Destruir la bala después de cierto tiempo
+            fireCooldown = fireRate;
             Destroy(bullet, 3f);
         }
 
-        // Reducir el enfriamiento
         fireCooldown -= Time.fixedDeltaTime;
     }
 
-    private void OnDrawGizmosSelected()
+    private void HandleMovementSound()
     {
-        // Dibuja el rango de ataque en la vista de escena
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stopDistance);
+        if (rb.linearVelocity.magnitude > 0.1f)
+        {
+            movementSoundTimer -= Time.fixedDeltaTime;
+            if (movementSoundTimer <= 0f && walkAudioClips.Length > 0)
+            {
+                AudioClip clip = walkAudioClips[Random.Range(0, walkAudioClips.Length)];
+                movementAudioSource.PlayOneShot(clip);
+                movementSoundTimer = movementSoundInterval;
+            }
+        }
     }
 }

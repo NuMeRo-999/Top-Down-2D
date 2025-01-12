@@ -9,6 +9,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackCooldown = 1f;
     [SerializeField] LayerMask attackLayer;
 
+    [Header("Audio Sources")]
+    public AudioSource attackAudioSource;
+    public AudioSource hitAudioSource;
+    public AudioSource deathAudioSource;
+
+    [Header("Attack Sounds")]
+    [SerializeField] AudioClip[] attackSounds;
+
     private BloodParticles bloodParticles;
     private Animator animator;
     private float lastAttackTime;
@@ -42,8 +50,28 @@ public class Enemy : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 hit.collider.GetComponent<Player>().TakeDamage(attackDamage);
+
+                PlayRandomAttackSound();
+
                 return;
             }
+        }
+    }
+
+    void PlayRandomAttackSound()
+    {
+        if (attackSounds.Length > 0)
+        {
+            // Seleccionar un sonido aleatorio
+            AudioClip randomSound = attackSounds[Random.Range(0, attackSounds.Length)];
+
+            // Reproducir el sonido
+            attackAudioSource.clip = randomSound;
+            attackAudioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("No attack sounds assigned to the enemy.");
         }
     }
 
@@ -55,6 +83,7 @@ public class Enemy : MonoBehaviour
         bloodParticles.SpawnBloodParticlesAndStain();
 
         animator.SetTrigger("Hit");
+        hitAudioSource.Play();
 
         if (currentHealth <= 0) Die();
     }
@@ -62,6 +91,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         animator.SetBool("isDead", true);
+        deathAudioSource.Play();
         enabled = false;
 
         bloodParticles.SpawnBloodBurst();
@@ -74,10 +104,11 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<ShooterEnemy>().enabled = false;
         }
-        
+
         GetComponent<Collider2D>().enabled = false;
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     }
+
     private void OnDrawGizmos()
     {
         // Dibujar el gizmo del raycast

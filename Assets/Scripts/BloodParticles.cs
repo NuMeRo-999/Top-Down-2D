@@ -45,13 +45,7 @@ public class BloodParticles : MonoBehaviour
         {
             GameObject randomBloodStain = bloodStainPrefabs[Random.Range(0, bloodStainPrefabs.Length)];
 
-            if (particleContainer == null)
-            {
-                Debug.LogError("Particle container is null during runtime!");
-                return;
-            }
-            
-            GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity, particleContainer.transform);
+            GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity);
             bloodStain.transform.Rotate(0f, 0f, Random.Range(0f, 360f)); // Rotación aleatoria para variedad
         }
         else
