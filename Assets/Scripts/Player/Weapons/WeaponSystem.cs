@@ -14,6 +14,15 @@ public class WeaponSystem : MonoBehaviour
     public GameObject bulletPrefab;
     public CinemachineCamera cinemachineCamera;
 
+    [Header("Audio Sources")]
+    public AudioSource rocketAudioSource;
+    public AudioSource pistolAudioSource;
+    public AudioSource shotgunAudioSource;
+    public AudioSource revolverAudioSource;
+    public AudioSource pistolReloadAudioSource;
+    public AudioSource shotgunReloadAudioSource;
+    public AudioSource rocketReloadAudioSource;
+
     void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -116,6 +125,22 @@ public class WeaponSystem : MonoBehaviour
     {
         if (equippedWeapon.totalAmmo > 0)
         {
+            if (equippedWeapon.name == "Pistol")
+            {
+                pistolReloadAudioSource.Play();
+            }
+            else if (equippedWeapon.name == "Revolver")
+            {
+                pistolReloadAudioSource.Play();
+            }
+            else if (equippedWeapon.name == "Shotgun")
+            {
+                shotgunReloadAudioSource.Play();
+            }
+            else if (equippedWeapon.name == "RPG")
+            {
+                rocketReloadAudioSource.Play();
+            }
             ammoText.text = "reloading...";
             ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
@@ -140,6 +165,16 @@ public class WeaponSystem : MonoBehaviour
     void FireBullet(float range)
     {
         ShakeCamera(1.5f, 0.2f);
+        pistolAudioSource.Play();
+        Debug.Log(equippedWeapon.name);
+        if (equippedWeapon.name == "Pistol")
+        {
+            pistolAudioSource.Play();
+        }
+        else if (equippedWeapon.name == "Revolver")
+        {
+            revolverAudioSource.Play();
+        }
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.right * equippedWeapon.speed, ForceMode2D.Impulse);
         Destroy(bullet, range);
@@ -148,6 +183,7 @@ public class WeaponSystem : MonoBehaviour
     void FireShotgun()
     {
         ShakeCamera(1.5f, 0.2f);
+        shotgunAudioSource.Play();
         if (equippedWeapon is Shotgun shotgun)
         {
             float angleStep = shotgun.spreadAngle / (shotgun.pelletCount - 1);
@@ -158,7 +194,7 @@ public class WeaponSystem : MonoBehaviour
                 Vector3 direction = Quaternion.Euler(0, 0, angle) * transform.up;
 
                 GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, angle));
-                bullet.GetComponent<Rigidbody2D>().AddForce(direction * 20, ForceMode2D.Impulse);
+                bullet.GetComponent<Rigidbody2D>().AddForce(direction * equippedWeapon.speed, ForceMode2D.Impulse);
 
                 Destroy(bullet, shotgun.range);
 
@@ -170,6 +206,7 @@ public class WeaponSystem : MonoBehaviour
     void FireRocket()
     {
         ShakeCamera(1.5f, 0.2f);
+        rocketAudioSource.Play();
         if (equippedWeapon is RocketLauncher rocketLauncher)
         {
             Debug.Log("Lanzando cohete");

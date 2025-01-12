@@ -128,3 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489b7e346a2e240499665059ec746261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
+  explosionAudioClip: {fileID: 8300000, guid: 5a533c575315b3c4890665a7d9b00d6a, type: 3}

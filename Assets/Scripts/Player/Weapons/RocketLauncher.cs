@@ -11,7 +11,6 @@ public class RocketLauncher : Weapon
     public GameObject wallExplosionEffectPrefab;
     public GameObject explosionMarkPrefab;
     public float explosionRadius = 2f;
-    public float speed;
     public float maxRange;
 }
 

@@ -107,6 +107,8 @@ MonoBehaviour:
   damage: 0
   explosionMarkPrefab: {fileID: 537686268860435781, guid: 73af13ae608ad1b4ca27a49265f5e596, type: 3}
   wallExplosionMarkPrefab: {fileID: 8245217513382943693, guid: 8f1bca4aed855d2489e39d8542a999d0, type: 3}
+  weaponSystem: {fileID: 0}
+  explosionAudioClip: {fileID: 8300000, guid: a71b60ee528e8734b965eec2c64f5372, type: 3}
 --- !u!61 &3564565850853406298
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
     public GameObject explosionMarkPrefab;
     public GameObject wallExplosionMarkPrefab;
     public WeaponSystem weaponSystem;
+    public AudioClip explosionAudioClip;
 
     private void Start()
     {
@@ -19,7 +20,6 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("Player")) return;
 
         Vector2 contactPoint = collision.contacts[0].point;
@@ -45,6 +45,18 @@ public class Rocket : MonoBehaviour
     {
         Instantiate(explosionEffect, explosionPosition, rotation);
         weaponSystem.ShakeCamera(2f, 0.3f);
+
+        // Crear un AudioSource dinámico para reproducir el sonido de la explosión
+        GameObject soundObject = new GameObject("ExplosionSound");
+        soundObject.transform.position = explosionPosition;
+
+        AudioSource tempAudioSource = soundObject.AddComponent<AudioSource>();
+        tempAudioSource.clip = explosionAudioClip;
+        tempAudioSource.volume = 1.0f; // Configura el volumen según sea necesario
+        tempAudioSource.spatialBlend = 1.0f; // Hacer que el sonido sea 3D
+        tempAudioSource.Play();
+
+        Destroy(soundObject, explosionAudioClip.length); // Eliminar el objeto una vez que termine el sonido
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(explosionPosition, explosionRadius);
 

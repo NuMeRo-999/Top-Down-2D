@@ -6,7 +6,7 @@ public class ExplosiveMonobehaviour : MonoBehaviour
     private Rigidbody2D rb;
 
     public WeaponSystem weaponSystem;
-
+    public AudioClip explosionAudioClip;
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class ExplosiveMonobehaviour : MonoBehaviour
         weaponSystem = FindAnyObjectByType<WeaponSystem>();
     }
 
-    public IEnumerator MoveAndStop(Transform firePoint,GameObject grenade, Explosive explosive)
+    public IEnumerator MoveAndStop(Transform firePoint, GameObject grenade, Explosive explosive)
     {
         Rigidbody2D rb = grenade.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -43,7 +43,6 @@ public class ExplosiveMonobehaviour : MonoBehaviour
         StartCoroutine(HandleExplosion(grenade, explosive));
     }
 
-
     public IEnumerator HandleExplosion(GameObject grenade, Explosive explosive)
     {
         yield return new WaitForSeconds(explosive.detonationTime);
@@ -54,9 +53,20 @@ public class ExplosiveMonobehaviour : MonoBehaviour
 
         weaponSystem.ShakeCamera(2f, 0.3f);
 
+        // Crear un AudioSource temporal para reproducir el sonido
+        GameObject soundObject = new GameObject("ExplosionSound");
+        soundObject.transform.position = explosionPosition;
+
+        AudioSource tempAudioSource = soundObject.AddComponent<AudioSource>();
+        tempAudioSource.clip = explosionAudioClip;
+        tempAudioSource.volume = 1.0f; // Configura el volumen según lo necesites
+        tempAudioSource.spatialBlend = 1.0f; // 3D sound
+        tempAudioSource.Play();
+
+        Destroy(soundObject, explosionAudioClip.length); // Destruir el objeto después de que termine el sonido
+
         foreach (Collider2D obj in hitObjects)
         {
-
             if (obj.tag is "Player" or "Enemy")
             {
                 Player player = obj.GetComponent<Player>();
