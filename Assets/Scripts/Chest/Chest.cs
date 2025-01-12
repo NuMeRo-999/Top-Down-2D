@@ -174,24 +174,32 @@ public class Chest : MonoBehaviour
         if (selectedItemIndex < 0 || selectedItemIndex >= items.Count) return;
 
         InventoryItem selectedItem = items[selectedItemIndex];
-        inventory.AddItem(selectedItem);
 
-        Debug.Log($"Collected item: {selectedItem.itemName}");
-
-        items.RemoveAt(selectedItemIndex);
-
-        foreach (Transform child in lootUI.transform)
+        if (inventory.HasAvailableSpace())
         {
-            Destroy(child.gameObject);
+            inventory.AddItem(selectedItem);
+            Debug.Log($"Collected item: {selectedItem.itemName}");
+
+            items.RemoveAt(selectedItemIndex);
+            foreach (Transform child in lootUI.transform)
+            {
+                Destroy(child.gameObject);
+            }
+
+            OpenChest();
+
+            if (items.Count == 0)
+            {
+                lootUI.SetActive(false);
+                lootUICanvas.SetActive(false);
+                openChest = false;
+                Debug.Log("All items collected, chest is empty!");
+            }
         }
-        OpenChest();
-
-        if (items.Count == 0)
+        else
         {
-            lootUI.SetActive(false);
-            lootUICanvas.SetActive(false);
-            openChest = false;
-            Debug.Log("All items collected, chest is empty!");
+            Debug.Log("No space in inventory to collect item.");
         }
     }
+
 }

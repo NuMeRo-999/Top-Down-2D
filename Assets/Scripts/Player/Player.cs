@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
   private Animator animator;
   private BloodParticles bloodParticles;
   public WeaponSystem weaponSystem;
+  public AudioSource healthAudioSource;
+  public AudioSource deathAudioSource;
 
   void Start()
   {
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
 
     if (Input.GetMouseButtonDown(0))
     {
+      healthAudioSource.Play();
       currentHealth += healAmount;
       if (currentHealth > maxHealth) currentHealth = maxHealth;
       healthText.text = "health=" + currentHealth.ToString() + "/" + maxHealth.ToString();
@@ -47,7 +50,7 @@ public class Player : MonoBehaviour
   public void Die()
   {
     animator.SetBool("isDead", true);
-    Debug.Log("Player died");
+    deathAudioSource.Play();
     bloodParticles.SpawnBloodBurst();
     GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
     GetComponent<SpriteRenderer>().sortingOrder = -1;

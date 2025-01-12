@@ -15,7 +15,6 @@ public class Inventory : MonoBehaviour
 
     void Awake()
     {
-        // Rellena espacios vacíos con null
         while (items.Count < 20)
             items.Add(null);
 
@@ -52,30 +51,36 @@ public class Inventory : MonoBehaviour
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
-
+        // Verificar si hay cofres abiertos y salir si es el caso
         foreach (Chest chest in chest)
         {
             if (chest.openChest) return;
         }
-        
 
-        if (scroll > 0f) // Cambia al espacio anterior en el inventario
+        // Desplazarse hacia arriba en el inventario
+        if (scroll > 0f || Input.GetKeyDown(KeyCode.UpArrow))
         {
+            int initialIndex = selectedIndex; // Guardar índice inicial para evitar bucles infinitos
             do
             {
                 selectedIndex = (selectedIndex > 0) ? selectedIndex - 1 : items.Count - 1;
-            } while (items[selectedIndex] == null && !IsInventoryEmpty());
+            } while ((items[selectedIndex] == null || string.IsNullOrEmpty(items[selectedIndex].itemName)) && selectedIndex != initialIndex);
+
             UpdateEquippedItem();
         }
-        else if (scroll < 0f || Input.GetKeyDown(KeyCode.DownArrow)) // Cambia al siguiente espacio
+        // Desplazarse hacia abajo en el inventario
+        else if (scroll < 0f || Input.GetKeyDown(KeyCode.DownArrow))
         {
+            int initialIndex = selectedIndex; // Guardar índice inicial para evitar bucles infinitos
             do
             {
                 selectedIndex = (selectedIndex < items.Count - 1) ? selectedIndex + 1 : 0;
-            } while (items[selectedIndex] == null && !IsInventoryEmpty());
+            } while ((items[selectedIndex] == null || string.IsNullOrEmpty(items[selectedIndex].itemName)) && selectedIndex != initialIndex);
+
             UpdateEquippedItem();
         }
     }
+
 
     void UpdateEquippedItem()
     {
@@ -86,18 +91,15 @@ public class Inventory : MonoBehaviour
             if (selectedItem.weaponStats is Shotgun shotgun)
             {
                 weaponSystem.EquipWeapon(shotgun);
-                Debug.Log("Arma equipada correctamente como Shotgun.");
             }
             else
             {
                 weaponSystem.EquipWeapon(selectedItem.weaponStats);
-                Debug.Log($"Arma equipada: {selectedItem.weaponStats.GetType().Name}");
             }
         }
         else
         {
             weaponSystem.UnequipWeapon();
-            Debug.Log("Espacio vacío seleccionado.");
         }
     }
 
@@ -118,7 +120,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < items.Count; i++)
         {
-            if (items[i] == null)
+            if (items[i] == null || string.IsNullOrEmpty(items[i].itemName))
             {
                 items[i] = item;
                 break;
@@ -126,6 +128,23 @@ public class Inventory : MonoBehaviour
         }
         UpdateEquippedItem();
     }
+
+    public bool HasAvailableSpace()
+    {
+        Debug.Log("Verificando espacios disponibles en el inventario...");
+        foreach (var item in items)
+        {
+            // Verificar si el objeto es null antes de acceder a itemName
+            if (item == null || string.IsNullOrEmpty(item.itemName))
+            {
+                Debug.Log("Espacio disponible encontrado.");
+                return true;
+            }
+        }
+        Debug.Log("No hay espacios disponibles.");
+        return false;
+    }
+
 
     bool IsInventoryEmpty()
     {
