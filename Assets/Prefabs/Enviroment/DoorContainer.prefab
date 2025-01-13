@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1365354026263304947}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.26, z: 0}
+  m_LocalPosition: {x: 0, y: 1.974, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: -658896908, guid: 38c4d2b640d59ce41b0665f1e28fcf9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365354026263304947}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -166,8 +166,8 @@ Transform:
   m_GameObject: {fileID: 2221946520843742568}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.089, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
+  m_LocalScale: {x: 1.5568, y: 1.5568, z: 1.5568}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497371357012806968}
@@ -195,12 +195,12 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.21076679, y: -0.4300241, z: 0}
-  - {x: -0.21070099, y: 0.60119116, z: 0}
-  - {x: 0.2015028, y: 0.5893632, z: 0}
+  - {x: -0.20919824, y: 0.59340405, z: 0}
+  - {x: 0.20743029, y: 0.59033716, z: 0}
   - {x: 0.19210625, y: -0.44401932, z: 0}
   - {x: 0.32879162, y: -0.6217559, z: 0}
   - {x: -0.31570435, y: -0.6217558, z: 0}
-  m_ShapePathHash: 1562660437
+  m_ShapePathHash: -380412812
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -209,8 +209,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.0065436363, y: -0.010282338, z: 0}
-      m_Extent: {x: 0.32224798, y: 0.61147356, z: 0}
+      m_Center: {x: 0.0065436363, y: -0.0141759515, z: 0}
+      m_Extent: {x: 0.32224798, y: 0.60757995, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
@@ -293,7 +293,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.53846395}
+  m_Offset: {x: 0, y: 1.0122379}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -303,7 +303,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.076928}
+  m_Size: {x: 1, y: 3.7927582}
   m_EdgeRadius: 0
 --- !u!1 &3731903859693652423
 GameObject:
@@ -599,7 +599,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: -658896908, guid: 38c4d2b640d59ce41b0665f1e28fcf9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8219314304378827613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -634,10 +634,10 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.1875, y: -0.37499997, z: 0}
-  - {x: -0.1875, y: 0.37499997, z: 0}
-  - {x: 0.18750048, y: 0.37499997, z: 0}
+  - {x: -0.26468647, y: 0.60655814, z: 0}
+  - {x: 0.29225338, y: 0.59001833, z: 0}
   - {x: 0.18750048, y: -0.37499997, z: 0}
-  m_ShapePathHash: 0
+  m_ShapePathHash: -59735267
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -646,8 +646,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.00000023841858, y: 0, z: 0}
-      m_Extent: {x: 0.18750024, y: 0.37499997, z: 0}
+      m_Center: {x: 0.013783455, y: 0.11577907, z: 0}
+      m_Extent: {x: 0.27846992, y: 0.49077904, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
@@ -689,8 +689,8 @@ Transform:
   m_GameObject: {fileID: 8763597611261584529}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.93, z: 0}
+  m_LocalScale: {x: 1.4773, y: 1.4773, z: 1.4773}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 497371357012806968}
@@ -717,13 +717,13 @@ MonoBehaviour:
   m_AlphaCutoff: 0.1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.21306705, y: -0.51971793, z: 0}
+  - {x: -0.2214963, y: -0.62740326, z: 0}
   - {x: -0.21543217, y: 0.53732044, z: 0}
   - {x: -0.3288479, y: 0.68018156, z: 0}
   - {x: 0.3502512, y: 0.67585605, z: 0}
-  - {x: 0.19244671, y: 0.53299505, z: 0}
-  - {x: 0.19683743, y: -0.5220836, z: 0}
-  m_ShapePathHash: 12620817
+  - {x: 0.21561034, y: 0.5358905, z: 0}
+  - {x: 0.21777616, y: -0.6275244, z: 0}
+  m_ShapePathHash: 636572498
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -732,8 +732,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.010701656, y: 0.07904899, z: 0}
-      m_Extent: {x: 0.33954954, y: 0.6011326, z: 0}
+      m_Center: {x: 0.010701656, y: 0.026328564, z: 0}
+      m_Extent: {x: 0.33954954, y: 0.65385294, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0
