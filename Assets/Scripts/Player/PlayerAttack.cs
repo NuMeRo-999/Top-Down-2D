@@ -6,11 +6,13 @@ public class PlayerAttack : MonoBehaviour
   public Transform attackPoint;
   public float attackRange = 0.3f;
   public LayerMask enemyLayers;
-  public Chest chest;
+  public Chest[] chest;
+  public AudioSource attackAudioSource;
 
   void Start()
   {
     animator = GetComponent<Animator>();
+    chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
   }
 
   void Update()
@@ -23,9 +25,13 @@ public class PlayerAttack : MonoBehaviour
 
   void Attack()
   {
-    if (chest.openChest) return;
-    
+    foreach (Chest chest in chest)
+    {
+      if (chest.openChest) return;
+    }
+
     animator.SetTrigger("Attack");
+    attackAudioSource.Play();
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
@@ -38,7 +44,8 @@ public class PlayerAttack : MonoBehaviour
     }
   }
 
-  private void OnDrawGizmos() {
+  private void OnDrawGizmos()
+  {
 
     if (attackPoint == null)
     {

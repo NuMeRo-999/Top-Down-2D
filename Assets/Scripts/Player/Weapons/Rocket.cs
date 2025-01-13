@@ -37,6 +37,11 @@ public class Rocket : MonoBehaviour
             Explode(contactPoint, rotation, rocketLauncher.wallExplosionEffectPrefab);
             Instantiate(wallExplosionMarkPrefab, contactPoint, rotation);
         }
+        else
+        {
+            Explode(contactPoint, rotation, rocketLauncher.wallExplosionEffectPrefab);
+            Instantiate(wallExplosionMarkPrefab, contactPoint, rotation);
+        }
 
         Destroy(gameObject);
     }

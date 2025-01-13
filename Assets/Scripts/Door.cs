@@ -6,10 +6,12 @@ public class Door : MonoBehaviour
     public bool open;
     private Animator animator;
     [SerializeField] private Collider2D doorCollider;
+    private AudioSource audioSource;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -33,12 +35,14 @@ public class Door : MonoBehaviour
     {
         open = true;
         doorCollider.enabled = false;
+        audioSource.Play();
     }
 
     public void closeDoor()
     {
         open = false;
         doorCollider.enabled = true;
+        audioSource.Play();
     }
 
 }

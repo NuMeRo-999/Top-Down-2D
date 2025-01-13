@@ -17,6 +17,8 @@ public class Chest : MonoBehaviour
     private bool isPlayerInRange = false;
     public int selectedItemIndex = 0;
 
+    public AudioSource pickObjectAudioSource;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -178,7 +180,7 @@ public class Chest : MonoBehaviour
         if (inventory.HasAvailableSpace())
         {
             inventory.AddItem(selectedItem);
-            Debug.Log($"Collected item: {selectedItem.itemName}");
+            pickObjectAudioSource.Play();
 
             items.RemoveAt(selectedItemIndex);
             foreach (Transform child in lootUI.transform)
