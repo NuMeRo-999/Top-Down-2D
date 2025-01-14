@@ -1,0 +1,1469 @@
+fileFormatVersion: 2
+guid: 93cc99d62e1dc90499bfce910931c2f6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3386969553845034090
+    second: p_keerutaja_0
+  - first:
+      213: -289743719897049633
+    second: p_keerutaja_1
+  - first:
+      213: -4500842673624683028
+    second: p_keerutaja_2
+  - first:
+      213: -21705842973704597
+    second: p_keerutaja_3
+  - first:
+      213: 5627193985430362299
+    second: p_keerutaja_4
+  - first:
+      213: 4407211120026869910
+    second: p_keerutaja_5
+  - first:
+      213: 4390579900683193432
+    second: p_keerutaja_6
+  - first:
+      213: 6526140522255318452
+    second: p_keerutaja_7
+  - first:
+      213: -761536750642681027
+    second: p_keerutaja_8
+  - first:
+      213: -1869565667672210723
+    second: p_keerutaja_9
+  - first:
+      213: -5599140022125949436
+    second: p_keerutaja_10
+  - first:
+      213: -6249554361070117148
+    second: p_keerutaja_11
+  - first:
+      213: -8729816041464202119
+    second: p_keerutaja_12
+  - first:
+      213: 7533478283162557621
+    second: p_keerutaja_13
+  - first:
+      213: 3525455307476244989
+    second: p_keerutaja_14
+  - first:
+      213: -2125727365786204222
+    second: p_keerutaja_15
+  - first:
+      213: -2346831147213045233
+    second: p_keerutaja_16
+  - first:
+      213: -5192461030380796126
+    second: p_keerutaja_17
+  - first:
+      213: -6084956625706595488
+    second: p_keerutaja_18
+  - first:
+      213: -6881938269362120859
+    second: p_keerutaja_19
+  - first:
+      213: -3895112764987313599
+    second: p_keerutaja_20
+  - first:
+      213: 1359185863221362234
+    second: p_keerutaja_21
+  - first:
+      213: 1364917261790635978
+    second: p_keerutaja_22
+  - first:
+      213: 1458898838984377677
+    second: p_keerutaja_23
+  - first:
+      213: -2049951171226997048
+    second: p_keerutaja_24
+  - first:
+      213: -5195964710179186928
+    second: p_keerutaja_25
+  - first:
+      213: 5909773312120926612
+    second: p_keerutaja_26
+  - first:
+      213: -5114866871575669657
+    second: p_keerutaja_27
+  - first:
+      213: -4622634862923913102
+    second: p_keerutaja_28
+  - first:
+      213: 5371251938148968392
+    second: p_keerutaja_29
+  - first:
+      213: 6856521888231236171
+    second: p_keerutaja_30
+  - first:
+      213: 2546653468555842474
+    second: p_keerutaja_31
+  - first:
+      213: 7760302215015483526
+    second: p_keerutaja_32
+  - first:
+      213: 4554460065930898355
+    second: p_keerutaja_33
+  - first:
+      213: -5281425135184424964
+    second: p_keerutaja_34
+  - first:
+      213: 497281179878860340
+    second: p_keerutaja_35
+  - first:
+      213: 7895447364514960600
+    second: p_keerutaja_36
+  - first:
+      213: -1596706600046453836
+    second: p_keerutaja_37
+  - first:
+      213: 4483829336294882128
+    second: p_keerutaja_38
+  - first:
+      213: 8939894905465842235
+    second: p_keerutaja_39
+  - first:
+      213: 5922552886402214347
+    second: p_keerutaja_40
+  - first:
+      213: 8297425889599979803
+    second: p_keerutaja_41
+  - first:
+      213: -5404918466703831483
+    second: p_keerutaja_42
+  - first:
+      213: 709188619799867441
+    second: p_keerutaja_43
+  - first:
+      213: -7754885110392100040
+    second: p_keerutaja_44
+  - first:
+      213: 5763754513357963483
+    second: p_keerutaja_45
+  - first:
+      213: 7548549462060436401
+    second: p_keerutaja_46
+  - first:
+      213: -1016886669319214136
+    second: p_keerutaja_47
+  - first:
+      213: -5060330026810237065
+    second: p_keerutaja_48
+  - first:
+      213: -396485385004436065
+    second: p_keerutaja_49
+  - first:
+      213: -4243156474096688124
+    second: p_keerutaja_50
+  - first:
+      213: 5948595748476959198
+    second: p_keerutaja_51
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: p_keerutaja_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 232
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c1ff14ddee00f20800000000000000
+      internalID: 3386969553845034090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 232
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd5d2a33f9f9afbf0800000000000000
+      internalID: -289743719897049633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 232
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced6ea05f6bc981c0800000000000000
+      internalID: -4500842673624683028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 232
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e700c96a2e2bff0800000000000000
+      internalID: -21705842973704597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 232
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb89ac79d1fc71e40800000000000000
+      internalID: 5627193985430362299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_5
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 232
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6906a5bc92f892d30800000000000000
+      internalID: 4407211120026869910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_6
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 202
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85c013a48297eec30800000000000000
+      internalID: 4390579900683193432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_7
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 202
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd7f4f5a32819a50800000000000000
+      internalID: 6526140522255318452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_8
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 202
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3ba98e2c5a7e65f0800000000000000
+      internalID: -761536750642681027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_9
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 202
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd2c12e3ee7fd06e0800000000000000
+      internalID: -1869565667672210723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_10
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 201
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e828db0dbdb42b0800000000000000
+      internalID: -5599140022125949436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_11
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 204
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ee1cef8b6f1549a0800000000000000
+      internalID: -6249554361070117148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_12
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 172
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97cf406109679d680800000000000000
+      internalID: -8729816041464202119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_13
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 172
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bc160f959a4c8860800000000000000
+      internalID: 7533478283162557621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_14
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 172
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df913a96ceeece030800000000000000
+      internalID: 3525455307476244989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_15
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 172
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c78cf03936ef72e0800000000000000
+      internalID: -2125727365786204222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 140
+        width: 53
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f024b8271816e6fd0800000000000000
+      internalID: -2346831147213045233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_17
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 140
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2270816243ca0f7b0800000000000000
+      internalID: -5192461030380796126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 140
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b491b3034ed8ba0800000000000000
+      internalID: -6084956625706595488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 139
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56711882b917e70a0800000000000000
+      internalID: -6881938269362120859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_20
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 138
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14277d2d397c1f9c0800000000000000
+      internalID: -3895112764987313599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_21
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 130
+        width: 51
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3eba01675cccd210800000000000000
+      internalID: 1359185863221362234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_22
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 130
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac764d8940921f210800000000000000
+      internalID: 1364917261790635978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 130
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45c4e4b3cc0f3410800000000000000
+      internalID: 1458898838984377677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_24
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 129
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce6e18554c1d83e0800000000000000
+      internalID: -2049951171226997048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_25
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 128
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017dd4020a934e7b0800000000000000
+      internalID: -5195964710179186928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_26
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 104
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4913d0c148bb30250800000000000000
+      internalID: 5909773312120926612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_27
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 104
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76491561ea75409b0800000000000000
+      internalID: -5114866871575669657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_28
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 104
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278651d751a19dfb0800000000000000
+      internalID: -4622634862923913102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_29
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 104
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c76f7cfd258a8a40800000000000000
+      internalID: 5371251938148968392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 104
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b42a6b67452472f50800000000000000
+      internalID: 6856521888231236171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_31
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 104
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa3994f36d7875320800000000000000
+      internalID: 2546653468555842474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 74
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 688ccabafb122bb60800000000000000
+      internalID: 7760302215015483526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_33
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 74
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb6385ac41b43f30800000000000000
+      internalID: 4554460065930898355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_34
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 74
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cff438d52db94b6b0800000000000000
+      internalID: -5281425135184424964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_35
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 74
+        width: 21
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436aa203992b6e600800000000000000
+      internalID: 497281179878860340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_36
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 73
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d455b0db83429d60800000000000000
+      internalID: 7895447364514960600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_37
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 76
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bb95b59ecb57d9e0800000000000000
+      internalID: -1596706600046453836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_38
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 44
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05bf4576603c93e30800000000000000
+      internalID: 4483829336294882128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_39
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 44
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3aad990d03e01c70800000000000000
+      internalID: 8939894905465842235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_40
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 44
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9e77d9872213250800000000000000
+      internalID: 5922552886402214347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_41
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 44
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b118cbb82e0662370800000000000000
+      internalID: 8297425889599979803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_42
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 12
+        width: 53
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e4b208a4fddf4b0800000000000000
+      internalID: -5404918466703831483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_43
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 12
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130bbe1da4b87d900800000000000000
+      internalID: 709188619799867441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 12
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bec19441d116490800000000000000
+      internalID: -7754885110392100040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_45
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 11
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd081453138fcff40800000000000000
+      internalID: 5763754513357963483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_46
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 10
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb0497edb5d1c860800000000000000
+      internalID: 7548549462060436401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_47
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 2
+        width: 51
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cbe56246fa43e1f0800000000000000
+      internalID: -1016886669319214136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_48
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 2
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77f9bb1c6a816c9b0800000000000000
+      internalID: -5060330026810237065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_49
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 2
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f953d2c94a66f7af0800000000000000
+      internalID: -396485385004436065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_50
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40461130ba74d15c0800000000000000
+      internalID: -4243156474096688124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: p_keerutaja_51
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed93e54f058ad8250800000000000000
+      internalID: 5948595748476959198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      p_keerutaja_0: 3386969553845034090
+      p_keerutaja_1: -289743719897049633
+      p_keerutaja_10: -5599140022125949436
+      p_keerutaja_11: -6249554361070117148
+      p_keerutaja_12: -8729816041464202119
+      p_keerutaja_13: 7533478283162557621
+      p_keerutaja_14: 3525455307476244989
+      p_keerutaja_15: -2125727365786204222
+      p_keerutaja_16: -2346831147213045233
+      p_keerutaja_17: -5192461030380796126
+      p_keerutaja_18: -6084956625706595488
+      p_keerutaja_19: -6881938269362120859
+      p_keerutaja_2: -4500842673624683028
+      p_keerutaja_20: -3895112764987313599
+      p_keerutaja_21: 1359185863221362234
+      p_keerutaja_22: 1364917261790635978
+      p_keerutaja_23: 1458898838984377677
+      p_keerutaja_24: -2049951171226997048
+      p_keerutaja_25: -5195964710179186928
+      p_keerutaja_26: 5909773312120926612
+      p_keerutaja_27: -5114866871575669657
+      p_keerutaja_28: -4622634862923913102
+      p_keerutaja_29: 5371251938148968392
+      p_keerutaja_3: -21705842973704597
+      p_keerutaja_30: 6856521888231236171
+      p_keerutaja_31: 2546653468555842474
+      p_keerutaja_32: 7760302215015483526
+      p_keerutaja_33: 4554460065930898355
+      p_keerutaja_34: -5281425135184424964
+      p_keerutaja_35: 497281179878860340
+      p_keerutaja_36: 7895447364514960600
+      p_keerutaja_37: -1596706600046453836
+      p_keerutaja_38: 4483829336294882128
+      p_keerutaja_39: 8939894905465842235
+      p_keerutaja_4: 5627193985430362299
+      p_keerutaja_40: 5922552886402214347
+      p_keerutaja_41: 8297425889599979803
+      p_keerutaja_42: -5404918466703831483
+      p_keerutaja_43: 709188619799867441
+      p_keerutaja_44: -7754885110392100040
+      p_keerutaja_45: 5763754513357963483
+      p_keerutaja_46: 7548549462060436401
+      p_keerutaja_47: -1016886669319214136
+      p_keerutaja_48: -5060330026810237065
+      p_keerutaja_49: -396485385004436065
+      p_keerutaja_5: 4407211120026869910
+      p_keerutaja_50: -4243156474096688124
+      p_keerutaja_51: 5948595748476959198
+      p_keerutaja_6: 4390579900683193432
+      p_keerutaja_7: 6526140522255318452
+      p_keerutaja_8: -761536750642681027
+      p_keerutaja_9: -1869565667672210723
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
