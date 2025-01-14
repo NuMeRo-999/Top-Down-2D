@@ -103,6 +103,11 @@ public class Enemy : MonoBehaviour
         else if (GetComponent<ShooterEnemy>() != null)
         {
             GetComponent<ShooterEnemy>().enabled = false;
+        } 
+        else if (GetComponent<Boss>() != null)
+        {
+            GetComponent<Boss>().enabled = false;
+            GetComponent<Boss>().minigunAudioSource.enabled = false;
         }
 
         GetComponent<Collider2D>().enabled = false;
