@@ -16,7 +16,9 @@ public class EnemyBullet : MonoBehaviour
             !other.gameObject.CompareTag("Bullet") &&
             !other.gameObject.CompareTag("Door") &&
             !other.gameObject.CompareTag("EnemyCollider") &&
-            !other.gameObject.CompareTag("ChestTriggerCollider"))
+            !other.gameObject.CompareTag("ChestTriggerCollider") &&
+            !other.gameObject.CompareTag("BossArea") &&
+            !other.gameObject.CompareTag("Teleport"))
         {
             Destroy(gameObject);
         }
