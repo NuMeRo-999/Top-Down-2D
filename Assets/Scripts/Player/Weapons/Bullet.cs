@@ -18,7 +18,8 @@ public class Bullet : MonoBehaviour
             !other.gameObject.CompareTag("EnemyCollider") &&
             !other.gameObject.CompareTag("ChestTriggerCollider") &&
             !other.gameObject.CompareTag("BossArea") &&
-            !other.gameObject.CompareTag("Teleport"))
+            !other.gameObject.CompareTag("Teleport") &&
+            !other.gameObject.CompareTag("CameraZoom"))
         {
             Destroy(gameObject);
         }

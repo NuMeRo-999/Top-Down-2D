@@ -12,6 +12,7 @@ TagManager:
   - ChestTriggerCollider
   - BossArea
   - Teleport
+  - CameraZoom
   layers:
   - Default
   - TransparentFX

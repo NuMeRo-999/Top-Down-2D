@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Boss : MonoBehaviour
@@ -35,19 +36,23 @@ public class Boss : MonoBehaviour
     private bool isOverheated;
     private float overheatTimer;
     private int currentFirePointIndex = 0;
-    private bool canMoveTowardsPlayer = false; // Para saber si el Boss puede moverse hacia el jugador
+    private bool canMoveTowardsPlayer = false;
+    public Enemy enemy;
+
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
+        enemy = GetComponent<Enemy>();
     }
 
     void FixedUpdate()
     {
         if (player == null) return;
-
+        
         // Calcular la distancia entre el Boss y el jugador
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 

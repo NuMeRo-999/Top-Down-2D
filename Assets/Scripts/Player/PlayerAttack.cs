@@ -12,11 +12,11 @@ public class PlayerAttack : MonoBehaviour
   void Start()
   {
     animator = GetComponent<Animator>();
-    chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
   }
 
   void Update()
   {
+    chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
     if (Input.GetMouseButtonDown(0))
     {
       Attack();
