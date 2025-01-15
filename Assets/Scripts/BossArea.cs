@@ -4,8 +4,12 @@ using Unity.Cinemachine;
 public class BossArea : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera cinemachineCamera;
-    [SerializeField] private float lensInsideArea = 10f; // Tamaño de lente dentro del área
-    [SerializeField] private float lensOutsideArea = 4f; // Tamaño de lente fuera del área
+    [SerializeField] private float lensInsideArea = 10f;
+    [SerializeField] private float lensOutsideArea = 4f;
+
+    private void Start() {
+        cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

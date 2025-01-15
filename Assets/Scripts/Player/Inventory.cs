@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -27,11 +28,13 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        
         chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
     }
 
     void Update()
     {
+        chest = FindObjectsByType<Chest>(FindObjectsSortMode.None);
         HandleSelectionInput();
 
         // Usa el objeto seleccionado al hacer clic izquierdo

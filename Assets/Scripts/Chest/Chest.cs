@@ -22,6 +22,12 @@ public class Chest : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        pickObjectAudioSource = GetComponent<AudioSource>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            inventory = player.GetComponent<Inventory>();
+        }
 
         if (chestMark != null)
             chestMark.SetActive(false);
@@ -176,6 +182,8 @@ public class Chest : MonoBehaviour
         if (selectedItemIndex < 0 || selectedItemIndex >= items.Count) return;
 
         InventoryItem selectedItem = items[selectedItemIndex];
+
+        Debug.Log(inventory);
 
         if (inventory.HasAvailableSpace())
         {

@@ -15,7 +15,6 @@ public class InventoryUI : MonoBehaviour
     void Start()
     {
         // Crear los 20 slots
-        Debug.Log(inventory.items.Count);
         for (int i = 0; i < inventory.items.Count; i++)
         {
             GameObject slot = Instantiate(slotPrefab, uiContainer);
