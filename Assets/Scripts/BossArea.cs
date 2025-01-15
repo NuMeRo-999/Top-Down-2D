@@ -5,7 +5,7 @@ public class BossArea : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private float lensInsideArea = 10f;
-    [SerializeField] private float lensOutsideArea = 4f;
+    [SerializeField] private float lensOutsideArea = 5f;
 
     private void Start() {
         cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();

@@ -9,6 +9,7 @@ public class ShooterEnemy : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float stopDistance = 5f;
     [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float detectionRange = 10f; // Rango de detección
 
     [Header("Shooting Settings")]
     [SerializeField] private GameObject bulletPrefab;
@@ -26,6 +27,7 @@ public class ShooterEnemy : MonoBehaviour
     private Animator animator;
     public float fireCooldown;
     private float movementSoundTimer;
+    private bool canMoveTowardsPlayer = false; // Para saber si el enemigo puede moverse hacia el jugador
 
     void Start()
     {
@@ -39,25 +41,45 @@ public class ShooterEnemy : MonoBehaviour
     {
         if (player == null) return;
 
-        Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
-        float distanceToPlayer = Vector2.Distance(player.position, rb.position);
+        // Calcular la distancia entre el enemigo y el jugador
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer > stopDistance)
+        // Si el jugador está dentro del rango de detección, permitir el movimiento hacia él
+        if (distanceToPlayer <= detectionRange)
         {
-            animator.SetBool("Attack", false);
-            rb.linearVelocity = directionToPlayer * speed;
+            canMoveTowardsPlayer = true;
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            animator.SetBool("Attack", true);
-            Shoot();
+            canMoveTowardsPlayer = false;
         }
 
-        HandleMovementSound();
+        if (canMoveTowardsPlayer)
+        {
+            Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
 
-        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-        rb.rotation = Mathf.LerpAngle(rb.rotation, angle, rotationSpeed * Time.fixedDeltaTime);
+            if (distanceToPlayer > stopDistance)
+            {
+                animator.SetBool("Attack", false);
+                rb.linearVelocity = directionToPlayer * speed;
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+                animator.SetBool("Attack", true);
+                Shoot();
+            }
+
+            HandleMovementSound();
+
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            rb.rotation = Mathf.LerpAngle(rb.rotation, angle, rotationSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Si no está dentro del rango, detenerse
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void Shoot()

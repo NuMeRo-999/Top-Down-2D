@@ -9,6 +9,7 @@ public class Boss : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float stopDistance = 5f;
     [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float detectionRange = 10f; // Rango de detección
 
     [Header("Minigun Settings")]
     [SerializeField] private GameObject bulletPrefab;
@@ -34,6 +35,7 @@ public class Boss : MonoBehaviour
     private bool isOverheated;
     private float overheatTimer;
     private int currentFirePointIndex = 0;
+    private bool canMoveTowardsPlayer = false; // Para saber si el Boss puede moverse hacia el jugador
 
     void Start()
     {
@@ -46,24 +48,43 @@ public class Boss : MonoBehaviour
     {
         if (player == null) return;
 
-        Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
-        float distanceToPlayer = Vector2.Distance(player.position, rb.position);
+        // Calcular la distancia entre el Boss y el jugador
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer > stopDistance)
+        // Si el jugador está dentro del rango de detección, permitir el movimiento hacia él
+        if (distanceToPlayer <= detectionRange)
         {
-            // animator.SetBool("Attack", false);
-            rb.linearVelocity = directionToPlayer * speed;
-            StopShooting();
+            canMoveTowardsPlayer = true;
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            // animator.SetBool("Attack", true);
-            StartShooting(directionToPlayer);
+            canMoveTowardsPlayer = false;
         }
 
-        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-        rb.rotation = Mathf.LerpAngle(rb.rotation, angle, rotationSpeed * Time.fixedDeltaTime);
+        if (canMoveTowardsPlayer)
+        {
+            Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
+
+            if (distanceToPlayer > stopDistance)
+            {
+                rb.linearVelocity = directionToPlayer * speed;
+                StopShooting(); // Detener disparos si está moviéndose
+            }
+            else
+            {
+                rb.linearVelocity = Vector2.zero;
+                StartShooting(directionToPlayer);
+            }
+
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            rb.rotation = Mathf.LerpAngle(rb.rotation, angle, rotationSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            // Si no está dentro del rango, detenerse
+            rb.linearVelocity = Vector2.zero;
+            StopShooting();
+        }
     }
 
     private void StartShooting(Vector2 directionToPlayer)
@@ -83,7 +104,6 @@ public class Boss : MonoBehaviour
     private void EnableContinuousFire()
     {
         if (isOverheated) return;
-
 
         isSpinningUp = false;
         if (minigunLoopSound != null)
@@ -114,7 +134,6 @@ public class Boss : MonoBehaviour
                 minigunAudioSource.PlayOneShot(minigunEndSound);
         }
     }
-
 
     private void Update()
     {
@@ -168,7 +187,6 @@ public class Boss : MonoBehaviour
         overheatTimer = cooldownTime; // Iniciar el tiempo de enfriamiento
     }
 
-
     private void FireBullet()
     {
         // Alternar entre los puntos de disparo
@@ -197,6 +215,6 @@ public class Boss : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stopDistance);
+        Gizmos.DrawWireSphere(transform.position, detectionRange); // Mostrar el rango de detección
     }
 }

@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float orbitFrequency = 2f;
     [SerializeField] private float orbitMagnitude = 1.5f;
     [SerializeField] private float changeDirectionInterval = 1.5f;
+    [SerializeField] private float detectionRange = 10f; // Rango de detección
 
     [Header("Step Sound Settings")]
     [SerializeField] private AudioSource stepAudioSource;  // AudioSource para los sonidos de los pasos
@@ -25,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private float changeDirectionTimer;
     private Vector2 orbitOffset;
     private float stepTimer;  // Temporizador para controlar el intervalo entre pasos
+    private bool canMoveTowardsPlayer = false; // Para saber si el enemigo puede ir hacia el jugador
 
     void Start()
     {
@@ -39,46 +41,67 @@ public class EnemyMovement : MonoBehaviour
     {
         if (player == null) return;
 
-        // Dirección hacia el jugador
-        Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
+        // Calcular la distancia entre el enemigo y el jugador
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (isOrbitingPlayer)
+        // Si el jugador está dentro del rango de detección, permitir el movimiento hacia él
+        if (distanceToPlayer <= detectionRange)
         {
-            // Temporizador para cambiar la dirección del orbitado
-            changeDirectionTimer -= Time.fixedDeltaTime;
-            if (changeDirectionTimer <= 0f)
-            {
-                // Cambiar la dirección del orbitado aleatoriamente
-                orbitOffset = new Vector2(
-                    Random.Range(-1f, 1f),
-                    Random.Range(-1f, 1f)).normalized * orbitMagnitude;
-                changeDirectionTimer = changeDirectionInterval;
-            }
-
-            // Movimiento de órbita alrededor del jugador
-            timeCounter += Time.fixedDeltaTime * orbitFrequency;
-            Vector2 orbitMovement = new Vector2(
-                Mathf.Sin(timeCounter) * orbitOffset.x,
-                Mathf.Cos(timeCounter) * orbitOffset.y);
-
-            // Dirección combinada (hacia el jugador + movimiento de órbita)
-            movementDirection = (directionToPlayer + orbitMovement).normalized;
+            canMoveTowardsPlayer = true;
         }
         else
         {
-            // Movimiento directo hacia el jugador
-            movementDirection = directionToPlayer;
+            canMoveTowardsPlayer = false;
         }
 
-        // Aplicar la velocidad usando linearVelocity
-        rb.linearVelocity = movementDirection * speed;
+        if (canMoveTowardsPlayer)
+        {
+            // Dirección hacia el jugador
+            Vector2 directionToPlayer = ((Vector2)player.position - rb.position).normalized;
 
-        // Hacer que el enemigo mire hacia el jugador
-        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
+            if (isOrbitingPlayer)
+            {
+                // Temporizador para cambiar la dirección del orbitado
+                changeDirectionTimer -= Time.fixedDeltaTime;
+                if (changeDirectionTimer <= 0f)
+                {
+                    // Cambiar la dirección del orbitado aleatoriamente
+                    orbitOffset = new Vector2(
+                        Random.Range(-1f, 1f),
+                        Random.Range(-1f, 1f)).normalized * orbitMagnitude;
+                    changeDirectionTimer = changeDirectionInterval;
+                }
 
-        // Reproducir sonido de pasos si el enemigo se está moviendo
-        HandleStepSounds();
+                // Movimiento de órbita alrededor del jugador
+                timeCounter += Time.fixedDeltaTime * orbitFrequency;
+                Vector2 orbitMovement = new Vector2(
+                    Mathf.Sin(timeCounter) * orbitOffset.x,
+                    Mathf.Cos(timeCounter) * orbitOffset.y);
+
+                // Dirección combinada (hacia el jugador + movimiento de órbita)
+                movementDirection = (directionToPlayer + orbitMovement).normalized;
+            }
+            else
+            {
+                // Movimiento directo hacia el jugador
+                movementDirection = directionToPlayer;
+            }
+
+            // Aplicar la velocidad usando linearVelocity
+            rb.linearVelocity = movementDirection * speed;
+
+            // Hacer que el enemigo mire hacia el jugador
+            float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+            rb.rotation = angle;
+
+            // Reproducir sonido de pasos si el enemigo se está moviendo
+            HandleStepSounds();
+        }
+        else
+        {
+            // Si no está dentro del rango, mantener la velocidad en cero
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void HandleStepSounds()
@@ -116,5 +139,10 @@ public class EnemyMovement : MonoBehaviour
         {
             isOrbitingPlayer = false;
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange); // Mostrar el rango de detección
     }
 }
