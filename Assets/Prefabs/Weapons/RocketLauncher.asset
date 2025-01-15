@@ -19,7 +19,7 @@ MonoBehaviour:
   speed: 50
   range: 2
   maxAmmo: 5
-  currentAmmo: 1965
+  currentAmmo: 1928
   totalAmmo: 2000
   reloadTime: 3
   type: 4
@@ -28,5 +28,4 @@ MonoBehaviour:
   wallExplosionEffectPrefab: {fileID: 5237951192283159181, guid: ccd0ac8c4deb10840beaec5aeffd4912, type: 3}
   explosionMarkPrefab: {fileID: 537686268860435781, guid: 73af13ae608ad1b4ca27a49265f5e596, type: 3}
   explosionRadius: 2
-  speed: 0
   maxRange: 0

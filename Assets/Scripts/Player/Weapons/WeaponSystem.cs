@@ -23,6 +23,8 @@ public class WeaponSystem : MonoBehaviour
     public AudioSource shotgunReloadAudioSource;
     public AudioSource rocketReloadAudioSource;
 
+    private float nextFireTime = 0f; // Tiempo mínimo permitido para disparar
+
     void Start()
     {
         inventory = GetComponent<Inventory>();
@@ -64,34 +66,45 @@ public class WeaponSystem : MonoBehaviour
 
     void Fire()
     {
-        if (equippedWeapon.currentAmmo > 0)
+        // Verifica si se puede disparar
+        if (Time.time >= nextFireTime)
         {
-            equippedWeapon.currentAmmo--;
-            ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
-
-            switch (equippedWeapon.type)
+            if (equippedWeapon.currentAmmo > 0)
             {
-                case WeaponType.Pistol:
-                case WeaponType.Revolver:
-                    FireBullet(equippedWeapon.range);
-                    break;
+                // Actualiza el tiempo del próximo disparo
+                nextFireTime = Time.time + (1f / equippedWeapon.fireRate);
 
-                case WeaponType.Shotgun:
-                    FireShotgun();
-                    break;
+                equippedWeapon.currentAmmo--;
+                ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
 
-                case WeaponType.RocketLauncher:
-                    FireRocket();
-                    break;
+                switch (equippedWeapon.type)
+                {
+                    case WeaponType.Pistol:
+                    case WeaponType.Revolver:
+                        FireBullet(equippedWeapon.range);
+                        break;
 
-                case WeaponType.Explosive:
-                    ThrowExplosive();
-                    break;
+                    case WeaponType.Shotgun:
+                        FireShotgun();
+                        break;
+
+                    case WeaponType.RocketLauncher:
+                        FireRocket();
+                        break;
+
+                    case WeaponType.Explosive:
+                        ThrowExplosive();
+                        break;
+                }
+            }
+            else
+            {
+                Debug.Log("Sin munición. Recarga primero.");
             }
         }
         else
         {
-            Debug.Log("Sin munición. Recarga primero.");
+            Debug.Log("Esperando para disparar...");
         }
     }
 
