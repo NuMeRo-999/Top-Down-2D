@@ -19,8 +19,8 @@ MonoBehaviour:
   speed: 50
   range: 2
   maxAmmo: 5
-  currentAmmo: 1928
-  totalAmmo: 2000
+  currentAmmo: 4
+  totalAmmo: 4
   reloadTime: 3
   type: 4
   rocketPrefab: {fileID: 1670894828947353917, guid: 493df995869475d4b8a2e407afe43756, type: 3}

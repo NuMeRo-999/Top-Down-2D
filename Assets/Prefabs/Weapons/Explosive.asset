@@ -18,8 +18,8 @@ MonoBehaviour:
   fireRate: 1
   speed: 50
   range: 2
-  maxAmmo: 10
-  currentAmmo: 174
+  maxAmmo: 5
+  currentAmmo: 0
   totalAmmo: 10
   reloadTime: 1
   type: 3

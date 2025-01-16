@@ -23,7 +23,8 @@ public class WeaponSystem : MonoBehaviour
     public AudioSource shotgunReloadAudioSource;
     public AudioSource rocketReloadAudioSource;
 
-    private float nextFireTime = 0f; // Tiempo mínimo permitido para disparar
+    private float nextFireTime = 0f;
+    private bool isReloading = false;
 
     void Start()
     {
@@ -99,7 +100,8 @@ public class WeaponSystem : MonoBehaviour
             }
             else
             {
-                Debug.Log("Sin munición. Recarga primero.");
+                if (equippedWeapon != null)
+                    StartCoroutine(Reload());
             }
         }
         else
@@ -138,22 +140,20 @@ public class WeaponSystem : MonoBehaviour
     {
         if (equippedWeapon.totalAmmo > 0)
         {
-            if (equippedWeapon.name == "Pistol")
+            if (equippedWeapon.name == "Pistol" || equippedWeapon.name == "Revolver" && !isReloading)
             {
                 pistolReloadAudioSource.Play();
             }
-            else if (equippedWeapon.name == "Revolver")
-            {
-                pistolReloadAudioSource.Play();
-            }
-            else if (equippedWeapon.name == "Shotgun")
+            else if (equippedWeapon.name == "Shotgun" && !isReloading)
             {
                 shotgunReloadAudioSource.Play();
             }
-            else if (equippedWeapon.name == "RPG")
+            else if (equippedWeapon.name == "RPG" && !isReloading)
             {
                 rocketReloadAudioSource.Play();
             }
+
+            isReloading = true;
             ammoText.text = "reloading...";
             ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
@@ -166,7 +166,8 @@ public class WeaponSystem : MonoBehaviour
 
             ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
             ammoText.color = Color.white;
-
+            isReloading = false;
+            
             Debug.Log("Recarga completada.");
         }
         else

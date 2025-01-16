@@ -8,10 +8,12 @@ public class PlayerAttack : MonoBehaviour
   public LayerMask enemyLayers;
   public Chest[] chest;
   public AudioSource attackAudioSource;
+  private PlayerAim playerAim;
 
   void Start()
   {
     animator = GetComponent<Animator>();
+    playerAim = GetComponent<PlayerAim>();
   }
 
   void Update()
@@ -31,7 +33,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     animator.SetTrigger("Attack");
-    attackAudioSource.Play();
+    if (!playerAim.isAiming) attackAudioSource.Play();
 
     Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
