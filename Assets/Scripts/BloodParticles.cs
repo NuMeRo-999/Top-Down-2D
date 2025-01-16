@@ -16,7 +16,7 @@ public class BloodParticles : MonoBehaviour
             if (ps != null)
             {
                 var emission = ps.emission;
-                var burst = new ParticleSystem.Burst(0f, 50, 100); // Configurar el burst (tiempo 0, entre 50 y 100 partículas)
+                var burst = new ParticleSystem.Burst(0f, 50, 100);
                 emission.SetBursts(new ParticleSystem.Burst[] { burst });
             }
 
@@ -46,7 +46,7 @@ public class BloodParticles : MonoBehaviour
             GameObject randomBloodStain = bloodStainPrefabs[Random.Range(0, bloodStainPrefabs.Length)];
 
             GameObject bloodStain = Instantiate(randomBloodStain, transform.position, Quaternion.identity);
-            bloodStain.transform.Rotate(0f, 0f, Random.Range(0f, 360f)); // Rotación aleatoria para variedad
+            bloodStain.transform.Rotate(0f, 0f, Random.Range(0f, 360f));
         }
         else
         {

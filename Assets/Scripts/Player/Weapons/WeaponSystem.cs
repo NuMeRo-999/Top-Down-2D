@@ -140,7 +140,11 @@ public class WeaponSystem : MonoBehaviour
     {
         if (equippedWeapon.totalAmmo > 0)
         {
-            if (equippedWeapon.name == "Pistol" || equippedWeapon.name == "Revolver" && !isReloading)
+            if (equippedWeapon.name == "Pistol" && !isReloading)
+            {
+                pistolReloadAudioSource.Play();
+            }
+            else if (equippedWeapon.name == "Revolver" && !isReloading)
             {
                 pistolReloadAudioSource.Play();
             }
@@ -152,8 +156,8 @@ public class WeaponSystem : MonoBehaviour
             {
                 rocketReloadAudioSource.Play();
             }
-
             isReloading = true;
+
             ammoText.text = "reloading...";
             ammoText.color = Color.red;
             yield return new WaitForSeconds(equippedWeapon.reloadTime);
@@ -167,7 +171,7 @@ public class WeaponSystem : MonoBehaviour
             ammoText.text = "ammo =" + equippedWeapon.currentAmmo.ToString() + "/" + equippedWeapon.totalAmmo.ToString();
             ammoText.color = Color.white;
             isReloading = false;
-            
+
             Debug.Log("Recarga completada.");
         }
         else

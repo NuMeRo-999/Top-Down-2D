@@ -20,7 +20,7 @@ MonoBehaviour:
   range: 2
   maxAmmo: 10
   currentAmmo: 10
-  totalAmmo: 188
+  totalAmmo: 10
   reloadTime: 2
   type: 0
   pelletCount: 5

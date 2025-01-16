@@ -19,8 +19,8 @@ MonoBehaviour:
   speed: 50
   range: 2
   maxAmmo: 5
-  currentAmmo: 0
-  totalAmmo: 10
+  currentAmmo: 5
+  totalAmmo: 5
   reloadTime: 1
   type: 3
   prefab: {fileID: 8486682997533531313, guid: cb87554fd19778e49ba013d812267abe, type: 3}
