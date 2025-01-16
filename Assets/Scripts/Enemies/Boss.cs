@@ -10,17 +10,17 @@ public class Boss : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float stopDistance = 5f;
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float detectionRange = 10f; // Rango de detección
+    [SerializeField] private float detectionRange = 10f;
 
     [Header("Minigun Settings")]
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform[] firePoints; // Múltiples puntos de disparo
+    [SerializeField] private Transform[] firePoints;
     [SerializeField] private float minigunSpinUpTime = 1f;
     [SerializeField] private float fireRate = 0.1f;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float bulletSpread = 5f;
-    [SerializeField] private float overheatTime = 5f; // Tiempo antes de sobrecalentarse
-    [SerializeField] private float cooldownTime = 3f; // Tiempo para enfriarse
+    [SerializeField] private float overheatTime = 5f;
+    [SerializeField] private float cooldownTime = 3f;
 
     [Header("Audio Settings")]
     [SerializeField] public AudioSource minigunAudioSource;
@@ -37,9 +37,9 @@ public class Boss : MonoBehaviour
     private float overheatTimer;
     private int currentFirePointIndex = 0;
     private bool canMoveTowardsPlayer = false;
+    private bool isRespawning = false;
+    private AudioClip lastPlayedClip = null; // Clip reproducido más recientemente
     public Enemy enemy;
-
-
 
     void Start()
     {
@@ -51,20 +51,10 @@ public class Boss : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player == null) return;
-        
-        // Calcular la distancia entre el Boss y el jugador
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (player == null || isRespawning) return;
 
-        // Si el jugador está dentro del rango de detección, permitir el movimiento hacia él
-        if (distanceToPlayer <= detectionRange)
-        {
-            canMoveTowardsPlayer = true;
-        }
-        else
-        {
-            canMoveTowardsPlayer = false;
-        }
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        canMoveTowardsPlayer = distanceToPlayer <= detectionRange;
 
         if (canMoveTowardsPlayer)
         {
@@ -73,7 +63,7 @@ public class Boss : MonoBehaviour
             if (distanceToPlayer > stopDistance)
             {
                 rb.linearVelocity = directionToPlayer * speed;
-                StopShooting(); // Detener disparos si está moviéndose
+                StopShooting();
             }
             else
             {
@@ -86,7 +76,6 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            // Si no está dentro del rango, detenerse
             rb.linearVelocity = Vector2.zero;
             StopShooting();
         }
@@ -94,16 +83,14 @@ public class Boss : MonoBehaviour
 
     private void StartShooting(Vector2 directionToPlayer)
     {
-        if (!isShooting && !isOverheated)
-        {
-            isShooting = true;
-            isSpinningUp = true;
+        if (isRespawning || isShooting || isOverheated) return;
 
-            if (minigunStartSound != null)
-                minigunAudioSource.PlayOneShot(minigunStartSound);
+        isShooting = true;
+        isSpinningUp = true;
 
-            Invoke(nameof(EnableContinuousFire), minigunSpinUpTime);
-        }
+        PlaySound(minigunStartSound);
+
+        Invoke(nameof(EnableContinuousFire), minigunSpinUpTime);
     }
 
     private void EnableContinuousFire()
@@ -111,33 +98,26 @@ public class Boss : MonoBehaviour
         if (isOverheated) return;
 
         isSpinningUp = false;
-        if (minigunLoopSound != null)
-        {
-            minigunAudioSource.loop = true;
-            animator.SetBool("Attack", true);
-            minigunAudioSource.clip = minigunLoopSound;
-            minigunAudioSource.Play();
-        }
+        PlaySound(minigunLoopSound, loop: true);
+        animator.SetBool("Attack", true);
     }
 
     private void StopShooting()
     {
-        if (isShooting || minigunAudioSource.isPlaying)
+        if (!isShooting && !minigunAudioSource.isPlaying) return;
+
+        isShooting = false;
+        isSpinningUp = false;
+
+        CancelInvoke(nameof(EnableContinuousFire));
+
+        if (minigunAudioSource.loop)
         {
-            isShooting = false;
-            isSpinningUp = false;
-
-            CancelInvoke(nameof(EnableContinuousFire));
-
-            if (minigunAudioSource.loop)
-            {
-                minigunAudioSource.loop = false;
-                minigunAudioSource.Stop(); // Detener cualquier sonido en curso
-            }
-
-            if (minigunEndSound != null)
-                minigunAudioSource.PlayOneShot(minigunEndSound);
+            minigunAudioSource.loop = false;
+            minigunAudioSource.Stop();
         }
+
+        PlaySound(minigunEndSound);
     }
 
     private void Update()
@@ -148,8 +128,7 @@ public class Boss : MonoBehaviour
             if (overheatTimer <= 0f)
             {
                 isOverheated = false;
-                if (minigunEndSound != null)
-                    minigunAudioSource.PlayOneShot(minigunEndSound);
+                Debug.Log("Overheat cooldown finished.");
             }
             return;
         }
@@ -178,34 +157,21 @@ public class Boss : MonoBehaviour
         isShooting = false;
         animator.SetBool("Attack", false);
 
-        // Detener el disparo y el sonido en bucle
         StopShooting();
+        PlaySound(overheatSound);
 
-        // Reproducir el sonido de sobrecalentamiento
-        if (overheatSound != null)
-        {
-            minigunAudioSource.loop = false; // Asegurar que el bucle se detenga
-            minigunAudioSource.Stop();      // Detener el sonido actual
-            minigunAudioSource.PlayOneShot(overheatSound); // Reproducir sobrecalentamiento
-        }
-
-        overheatTimer = cooldownTime; // Iniciar el tiempo de enfriamiento
+        overheatTimer = cooldownTime;
     }
 
     private void FireBullet()
     {
-        // Alternar entre los puntos de disparo
         Transform firePoint = firePoints[currentFirePointIndex];
         currentFirePointIndex = (currentFirePointIndex + 1) % firePoints.Length;
 
-        // Variación aleatoria en ángulo
         float randomSpread = Random.Range(-bulletSpread, bulletSpread);
-
-        // Calcular nueva rotación con la variación
         Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpread);
         Quaternion bulletRotation = firePoint.rotation * spreadRotation;
 
-        // Instanciar la bala con la nueva rotación
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, bulletRotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
@@ -217,9 +183,47 @@ public class Boss : MonoBehaviour
         Destroy(bullet, 3f);
     }
 
+    public void Respawn()
+    {
+        isRespawning = true;
+        ResetAudioState();
+        StartCoroutine(EndRespawnCooldown());
+    }
+
+    private IEnumerator EndRespawnCooldown()
+    {
+        yield return new WaitForSeconds(1f);
+        isRespawning = false;
+    }
+
+    public void ResetAudioState()
+    {
+        if (minigunAudioSource.isPlaying)
+        {
+            minigunAudioSource.Stop();
+        }
+
+        minigunAudioSource.loop = false;
+        minigunAudioSource.clip = null;
+        lastPlayedClip = null;
+        Debug.Log("Audio state reset after respawn.");
+    }
+
+    private void PlaySound(AudioClip clip, bool loop = false)
+    {
+        if (clip == null || lastPlayedClip == clip) return;
+
+        minigunAudioSource.Stop();
+        minigunAudioSource.clip = clip;
+        minigunAudioSource.loop = loop;
+        minigunAudioSource.Play();
+        lastPlayedClip = clip;
+        Debug.Log($"Playing sound: {clip.name}, loop: {loop}");
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange); // Mostrar el rango de detección
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
